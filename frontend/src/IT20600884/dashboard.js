@@ -4,7 +4,6 @@ import AllDoctors from "./Doctor/AllDoctors";
 import AllMasters from "./Master/AllMasters";
 import AllUsers from "./User/AllUsers";
 
-
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
   const [selectedField, setSelectedField] = useState("home");
@@ -13,8 +12,8 @@ export default function Sidebar() {
     <div className="flex">
       <div
         className={` ${
-          open ? "w-40" : "w-60 "
-        } flex flex-col h-screen p-3 bg-gray-800 shadow duration-300`}
+          open ? "w-56" : "w-80 "
+        } flex flex-col h-screen p-3 bg-red-950 shadow duration-300`}
       >
         <div className="space-y-3">
           <div className="flex items-center justify-between">
@@ -42,7 +41,7 @@ export default function Sidebar() {
               <li className="rounded-sm">
                 <button
                   onClick={() => setSelectedField("home")}
-                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-500 w-full"
+                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -61,11 +60,10 @@ export default function Sidebar() {
                   <span className="text-gray-100">Home</span>
                 </button>
               </li>
-              
               <li className="rounded-sm">
                 <button
                   onClick={() => setSelectedField("users")}
-                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-500 w-full"
+                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +85,7 @@ export default function Sidebar() {
               <li className="rounded-sm">
                 <button
                   onClick={() => setSelectedField("doctors")}
-                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-500 w-full"
+                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +107,7 @@ export default function Sidebar() {
               <li className="rounded-sm">
                 <button
                   onClick={() => setSelectedField("masters")}
-                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-500 w-full"
+                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -128,11 +126,10 @@ export default function Sidebar() {
                   <span className="text-gray-100">Masters</span>
                 </button>
               </li>{" "}
-              
               <li className="rounded-sm">
                 <button
                   onClick={() => setSelectedField("total-blood")}
-                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-500 w-full"
+                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +153,7 @@ export default function Sidebar() {
                   onClick={() => {
                     navigate("/login");
                   }}
-                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-slate-500 w-full"
+                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -208,10 +205,9 @@ export default function Sidebar() {
             </div>
           </div>
         ) : null}
-        {selectedField === "doctors" ? <AllDoctors/> : null}
-        {selectedField === "masters" ? <AllMasters/> : null}
-        {selectedField === "users" ? <AllUsers/> : null}
-        {/* {selectedField === "repair" ? <AllTeam /> : null} */}
+        {selectedField === "doctors" ? <AllDoctors /> : null}
+        {selectedField === "masters" ? <AllMasters /> : null}
+        {selectedField === "users" ? <AllUsers /> : null}
       </div>
     </div>
   );
