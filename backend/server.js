@@ -38,6 +38,10 @@ app.use("/doctor",doctorRouter);
 const masterRouter = require('./routes/MasterRoute')
 app.use("/master",masterRouter);
 
+// users
+const userRouter = require('./routes/UserRoute')
+app.use("/user",userRouter);
+
 
 //run the app using port
 app.listen(PORT, () =>{
