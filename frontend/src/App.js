@@ -6,7 +6,7 @@ function App() {
     <div className="App">
      <div className='bg-black'>
       <h2 className='text-yellow-300'>
-        Hello World ` `
+        Hello World 
       </h2>
      </div>
     </div>
