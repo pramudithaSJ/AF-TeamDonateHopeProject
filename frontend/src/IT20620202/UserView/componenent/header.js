@@ -11,7 +11,9 @@ export const Header = () => {
   duration-500 md:opacity-100 transition-all items-center z-40 fixed top-0 left-0 "
     >
       <div className="ml-5">
+
         <Link to="/" passHref>
+
           <a>
             <div className="w-1/5">
               <img src="../images/Hope.png" alt="logo" />
@@ -21,21 +23,27 @@ export const Header = () => {
       </div>
       <div className="w-full md:w-2/4 flex gap-8 md:items-center md:justify-center md:flex-row flex-col md:flex-auto flex-1 lg:mt-0 mt-10 px-5 lg:px-0">
         <div>
+
           <Link to="/doctors" passHref>
+
             <a className="text-white text-lg hover:text-yellow-600 transition-all duration-500 ease-in-out relative group inline-block">
               Home
             </a>
           </Link>
         </div>
         <div>
+
           <Link to="/doctors" passHref>
+
             <a className="text-white text-lg hover:text-yellow-600 transition-all duration-500 ease-in-out relative group inline-block">
               About Us
             </a>
           </Link>
         </div>
         <div>
+
           <Link to="/doctors" passHref>
+
             <a className="text-white text-lg hover:text-yellow-600  transition-all duration-500 ease-in-out relative group inline-block">
               Contact Us
             </a>
@@ -85,6 +93,7 @@ export const Header = () => {
             ) : (
               <>
                 <div className="flex gap-9 mr-10">
+
                     <Link
                     to="/login"
                     >
@@ -106,6 +115,7 @@ export const Header = () => {
                    Sign Up
                   </button>
                     </Link>
+
                 </div>
               </>
             )}

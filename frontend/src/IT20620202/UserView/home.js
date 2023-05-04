@@ -1,6 +1,7 @@
 import React from "react";
 import { Header } from "./componenent/header";
 import styled from "styled-components";
+
 import home from "../UserView/images/Homepage1.jpg"
 import home2 from "../UserView/images/Hope1.png"
 
@@ -17,17 +18,23 @@ export default function HomePage() {
       <HeroWrapper>
 
       </HeroWrapper>
+
       <section className="lg:px-20 py-10">
         <div className="container mx-auto">
           <h2 className="mt-1 mb-10 text-4xl text-center font-bold text-black">
             Donate A Hope With Us
+
           </h2>
           <div className="grid sm:grid-cols-3 grid-cols-1 gap-4 text-center mt-6 p-5">
             <div className="bg-white">
               <div className="shadow-xl rounded-lg">
                 <img
                   className="object-cover h-full w-full rounded-t-lg"
+
                   src={home}
+
+              
+
                   alt=""
                 />
                 <div className="p-5">
@@ -43,7 +50,10 @@ export default function HomePage() {
               <div className="shadow-xl rounded-lg">
                 <img
                   className="object-cover h-full w-full rounded-t-lg"
+
                   src={home2}
+
+
                   alt="Card images cap"
                 />
                 <div className="p-5">
@@ -59,7 +69,9 @@ export default function HomePage() {
               <div className="shadow-xl rounded-lg">
                 <img
                   className="object-cover h-full w-full rounded-t-lg"
+
                   src={home2}
+
                   alt="Card images cap"
                 />
                 <div className="p-5">
