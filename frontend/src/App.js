@@ -36,6 +36,7 @@ function App() {
 
           {/* IT20600884 */}
           <Route path="/doctors" exact element={<AllDoctors />} />
+          <Route path="/teachers01" exact element={<AllMasters />} />
         
         </Routes>
       </BrowserRouter>
