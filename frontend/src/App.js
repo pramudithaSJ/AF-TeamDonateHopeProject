@@ -17,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<HomePage />} />
           <Route path="/login" exact element={<LoginUser />} />
+          <Route path="/loginsample" exact element={<LoginUser />} />
           <Route path="/signin" exact element={<SignUpUser />} />
           <Route path="/dashboard" exact element={<Dashboard />} />
           <Route path="/doctors" exact element={<AllDoctors />} />
@@ -25,7 +26,11 @@ function App() {
           <Route path="/teachers" exact element={<AllMasters />} />
           <Route path="/teachers01" exact element={<AllMasters />} />
 
+<<<<<<< HEAD
           <Route path="/teachers03" exact element={<AllMasters />} />
+=======
+          <Route path="/teachers02" exact element={<AllMasters />} />
+>>>>>>> 1bb8bbce9d7a6fa4220bcd85caff6a877bcaabae
         </Routes>
       </BrowserRouter>
     </div>
