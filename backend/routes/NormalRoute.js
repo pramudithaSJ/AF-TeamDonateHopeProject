@@ -3,12 +3,12 @@ let Normal = require('../models/NormalModel')
 
 //http://localhost:8020/normal/add
 router.route("/add").post((req,res) => {
-    const nid = req.body.eid;
+    const nid = req.body.nid;
     const name = req.body.name;
     const age = Number(req.body.age);
     const nic = req.body.nic;
     const email = req.body.email;
-    const contactno = Number(req.body.contactno);
+    const contactno = req.body.contactno;
     const bloodtype = req.body.bloodtype;
     const location = req.body.location;
     const hospital = req.body.hospital;

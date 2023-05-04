@@ -9,6 +9,7 @@ import HomePage from "./IT20620202/UserView/home";
 import LoginUser from "./IT20620202/UserView/login";
 import SignUpUser from "./IT20620202/UserView/signin";
 import Sidebar from "./IT20603236/UserDashboard";
+import AllRequests from "./IT20603236/Requests/Requests";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
           {/* 
           IT20620202 */}
           <Route path="/user-dashboard" exact element={<Sidebar/>} />
-          <Route path="/teachers" exact element={<AllMasters />} />
+          <Route path="/requests" exact element={<AllRequests/>} />
         </Routes>
       </BrowserRouter>
     </div>

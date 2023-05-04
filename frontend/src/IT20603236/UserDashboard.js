@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AllDoctors from "../IT20600884/Doctor/AllDoctors";
+import Requests from "./Requests/Requests";
 import AllMasters from "../IT20600884/Master/AllMasters";
 import AllUsers from "../IT20600884/User/AllUsers";
 
@@ -74,7 +74,7 @@ export default function Sidebar() {
               </li>
               <li className="rounded-sm">
                 <button
-                  onClick={() => setSelectedField("Requests")}
+                  onClick={() => setSelectedField("requests")}
                   className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
@@ -146,7 +146,7 @@ export default function Sidebar() {
       </div>
       <div className="container mx-auto">
 
-        {selectedField === "doctors" ? <AllDoctors /> : null}
+        {selectedField === "requests" ? <Requests/> : null}
         {selectedField === "masters" ? <AllMasters /> : null}
         {selectedField === "users" ? <AllUsers /> : null}
       </div>

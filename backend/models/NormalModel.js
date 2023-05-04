@@ -24,7 +24,7 @@ const NormalSchema = new Schema({
         required : true
     },
     contactno : {
-        type : Number,
+        type : String,
         required : true
     },
     bloodtype : {
