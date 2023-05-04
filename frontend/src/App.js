@@ -26,6 +26,16 @@ function App() {
           <Route path="/students" exact element={<AllMasters />} />
           <Route path="/teachers" exact element={<AllMasters />} />
           <Route path="/teachers01" exact element={<AllMasters />} />
+
+
+
+
+
+
+
+
+          {/* IT20600884 */}
+          <Route path="/doctors" exact element={<AllDoctors />} />
         
         </Routes>
       </BrowserRouter>
