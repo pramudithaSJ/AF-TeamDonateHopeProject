@@ -24,6 +24,7 @@ function App() {
           <Route path="/masters" exact element={<AllMasters />} />
           <Route path="/students" exact element={<AllMasters />} />
           <Route path="/teachers" exact element={<AllMasters />} />
+          <Route path="/teachers01" exact element={<AllMasters />} />
         </Routes>
       </BrowserRouter>
     </div>
