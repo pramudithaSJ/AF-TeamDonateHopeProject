@@ -42,6 +42,17 @@ app.use("/master",masterRouter);
 const userRouter = require('./routes/UserRoute')
 app.use("/user",userRouter);
 
+// emergency request
+const emergencyRouter = require('./routes/EmergencyRoute')
+app.use("/emergency",emergencyRouter);
+
+
+// emergency request
+const normalRouter = require('./routes/NormalRoute')
+app.use("/normal",normalRouter);
+
+
+
 
 //run the app using port
 app.listen(PORT, () =>{
