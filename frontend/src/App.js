@@ -9,7 +9,6 @@ import HomePage from "./IT20620202/UserView/home";
 import LoginUser from "./IT20620202/UserView/login";
 import SignUpUser from "./IT20620202/UserView/signin";
 
-
 function App() {
   return (
     <div>
@@ -26,7 +25,10 @@ function App() {
           <Route path="/students" exact element={<AllMasters />} />
           <Route path="/teachers" exact element={<AllMasters />} />
           <Route path="/teachers01" exact element={<AllMasters />} />
-        
+
+          {/* 
+          IT20620202 */}
+           <Route path="/teachers" exact element={<AllMasters />} />
         </Routes>
       </BrowserRouter>
     </div>
