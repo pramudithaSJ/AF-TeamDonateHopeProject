@@ -22,7 +22,7 @@ const customStyles = {
 export default function AllRequests() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
-  const [id, setId] = useState("");
+ 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
@@ -62,12 +62,17 @@ export default function AllRequests() {
 
     const response = axios
       .post(`http://localhost:8020/emergency/add`, {
-        id: values.id,
+        
         name: values.name,
         age: values.age,
-        email: values.email,
-        address: values.address,
-        contact: values.contact,
+        nic: values.nic,
+        contactno: values.contactno,
+        bloodtype: values.bloodtype,
+        hospital: values.hodpital,
+        bloodpint: values.bloodpint,
+        date: values.date,
+        time: values.time,
+        
       })
       .then(() => {
         toast.success("Emergency Request Added !!");
@@ -83,12 +88,15 @@ export default function AllRequests() {
 
     const response = axios
       .post(`http://localhost:8020/normal/add`, {
-        id: values.id,
-        name: values.name,
-        age: values.age,
-        email: values.email,
-        address: values.address,
-        contact: values.contact,
+       
+      name: values.name,
+      age: values.age,
+      nic: values.nic,
+      contactno: values.contactno,
+      bloodtype: values.bloodtype,
+      hospital: values.hodpital,
+      bloodpint: values.bloodpint,
+
       })
       .then(() => {
         toast.success("Normal Request Added !!");
@@ -143,32 +151,20 @@ export default function AllRequests() {
               <Form>
                 <h2 className="mb-5">Normal Requests</h2>
                 <div className="flex gap-4">
+                 
+
                   <div className="flex-col w-full">
                     <div className="ll">
                       {" "}
-                      <p className="font-semibold">Doctor Id</p>
+                      <p className="font-semibold" >Name</p>
                     </div>
                     <div className="ll">
                       {" "}
+
                       <Field
                         className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
                         type="text"
-                        name="id"
-                        required={true}
-                      />
-                    </div>
-                  </div>
-                  <div className="flex-col w-full">
-                    <div className="ll">
-                      {" "}
-                      <p className="font-semibold">Name</p>
-                    </div>
-                    <div className="ll">
-                      {" "}
-                      <Field
-                        className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                        type="text"
-                        name="name"
+                        name="name"         
                         required={true}
                       />
                     </div>
@@ -184,7 +180,7 @@ export default function AllRequests() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="text"
+                      type="number"
                       name="age"
                     />
                   </div>
@@ -200,66 +196,121 @@ export default function AllRequests() {
                 <div className="flex-col w-full">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">Email</p>
+                    <p className="font-semibold">NIC</p>
                   </div>
                   <div className="ll">
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="email"
-                      name="email"
+                      type="text"
+                      name="nic"
                     />
                   </div>
 
                   <ErrorMessage
                     component="div"
                     className="text-red-500 text-xs"
-                    name="email"
+                    name="nic"
                   />
                 </div>
 
                 <div className="flex-col w-full">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">Address</p>
+                    <p className="font-semibold">Contact No</p>
                   </div>
                   <div className="ll">
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="address"
-                      name="address"
+                      type="number"
+                      name="contactno"
+                      maxlength = "10"
                     />
                   </div>
 
                   <ErrorMessage
                     component="div"
                     className="text-red-500 text-xs"
-                    name="address"
+                    name="contactno"
                   />
                 </div>
 
                 <div className="flex-col">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">Contact</p>
-                  </div>
+                    <p className="font-semibold">Blood Type</p>
+              
+                 </div>
                   <div className="ll">
                     {" "}
-                    <Field
-                      className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
-                      type="contact"
-                      name="contact"
-                    />
+
+                    <select  className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full" name = "bloodtype" id = "bloodtype" placeholder="choose a Blood Type">
+                  
+                  <option value= "AB+">AB+</option>
+                  <option value= "AB-">AB-</option>
+                  <option value= "A+">A+</option>
+                  <option value= "A-">A-</option>
+                  <option value= "B+">B+</option>
+                  <option value= "B-">B-</option>
+                  <option value= "O+">O+</option>
+                  <option value= "O-">O-</option>
+                 </select>
+                  
+                
                   </div>
 
                   <ErrorMessage
                     component="div"
                     className="text-red-500 text-xs italic"
-                    name="contact"
+                    name="bloodtype"
+                  />
+                </div>
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Hospital</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="text"
+                      name="hospital"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="hospital"
                   />
                 </div>
                 
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Blood Pint</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="number"
+                      name="bloodpint"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="bloodpint"
+                  />
+                </div>
+
+
+
 
                 <div className="w-full flex gap-2">
                   <button
@@ -299,21 +350,7 @@ export default function AllRequests() {
               <Form>
                 <h2 className="mb-5">Emergency Requests</h2>
                 <div className="flex gap-4">
-                  <div className="flex-col w-full">
-                    <div className="ll">
-                      {" "}
-                      <p className="font-semibold">Doctor Id</p>
-                    </div>
-                    <div className="ll">
-                      {" "}
-                      <Field
-                        className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                        type="text"
-                        name="id"
-                        required={true}
-                      />
-                    </div>
-                  </div>
+                
                   <div className="flex-col w-full">
                     <div className="ll">
                       {" "}
@@ -340,7 +377,7 @@ export default function AllRequests() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="text"
+                      type="number"
                       name="age"
                     />
                   </div>
@@ -356,67 +393,166 @@ export default function AllRequests() {
                 <div className="flex-col w-full">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">Email</p>
+                    <p className="font-semibold">NIC</p>
                   </div>
                   <div className="ll">
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="email"
-                      name="email"
+                      type="text"
+                      name="nic"
                     />
                   </div>
 
                   <ErrorMessage
                     component="div"
                     className="text-red-500 text-xs"
-                    name="email"
+                    name="nic"
                   />
                 </div>
 
-                <div className="flex-col w-full">
-                  <div className="ll">
-                    {" "}
-                    <p className="font-semibold">Address</p>
-                  </div>
-                  <div className="ll">
-                    {" "}
-                    <Field
-                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="address"
-                      name="address"
-                    />
-                  </div>
-
-                  <ErrorMessage
-                    component="div"
-                    className="text-red-500 text-xs"
-                    name="address"
-                  />
-                </div>
+               
 
                 <div className="flex-col">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">Contact</p>
+                    <p className="font-semibold">Contact No</p>
                   </div>
                   <div className="ll">
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
-                      type="contact"
-                      name="contact"
+                      type="number"
+                      name="contactno"
                     />
                   </div>
 
                   <ErrorMessage
                     component="div"
                     className="text-red-500 text-xs italic"
-                    name="contact"
+                    name="contactno"
                   />
                 </div>
-                
 
+
+
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Blood Type</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="text"
+                      name="bloodtype"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="bloodtype"
+                  />
+                </div>
+
+
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Hospital</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="text"
+                      name="hospital"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="hospital"
+                  />
+                </div>
+
+
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Blood Pint</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="number"
+                      name="bloodpint"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="bloodpint"
+                  />
+                </div>
+
+
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Date</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="date"
+                      name="date"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="date"
+                  />
+                </div>
+
+
+
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Time</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="time"
+                      name="time"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="time"
+                  />
+                </div>
+
+
+            
                 <div className="w-full flex gap-2">
                   <button
                     className="bg-red-800 w-1/2 text-white py-3 hover:bg-red-500"

@@ -3,14 +3,11 @@ let Normal = require('../models/NormalModel')
 
 //http://localhost:8020/normal/add
 router.route("/add").post((req,res) => {
-    const nid = req.body.nid;
     const name = req.body.name;
     const age = Number(req.body.age);
     const nic = req.body.nic;
-    const email = req.body.email;
     const contactno = req.body.contactno;
     const bloodtype = req.body.bloodtype;
-    const location = req.body.location;
     const hospital = req.body.hospital;
     const bloodpint = req.body.bloodpint;
   
@@ -18,14 +15,12 @@ router.route("/add").post((req,res) => {
 
   
     const newNormal = new Normal({
-        nid,
+        
         name,
         age,
         nic,
-        email,
         contactno,
         bloodtype,
-        location,
         hospital,
         bloodpint
        
@@ -63,17 +58,15 @@ router.route("/delete/:nid").delete((req,res) => {
 //http://localhost:8020/normal/update/:nid
 router.route("/update/:nid").put(async (req,res)=>{
     let normalId = req.params.nid;
-    const {nid,name,age,nic,email,contactno,bloodtype,location,hospital,bloodpint} = req.body;
+    const {name,age,nic,contactno,bloodtype,hospital,bloodpint} = req.body;
 
     const updateNormal = {
-        nid,
+        
         name,
         age,
         nic,
-        email,
         contactno,
         bloodtype,
-        location,
         hospital,
         bloodpint
       
@@ -92,14 +85,12 @@ router.route("/update/:nid").put(async (req,res)=>{
 router.route("/updateOne/:nid").put(async (req, res) => {
     let normal = await Normal.findById(req.params.nid);
     const data = {
-        nid: req.body.nid || Normal.nid,
+        
         name: req.body.name || Normal.name,
         age: req.body.age || Normal.age,
         nic: req.body.nic || Normal.nic,
-        email: req.body.email || Normal.email,
         contactno: req.body.contactno || Normal.contactno,
         bloodtype: req.body.bloodtype || Normal.bloodtype,
-        location: req.body.location || Normal.location,
         hospital: req.body.hospital || Normal.hospital,
         bloodpint: req.body.bloodpint || Normal.bloodpint, 
  

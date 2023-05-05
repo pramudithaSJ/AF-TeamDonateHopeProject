@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 
 const EmergencySchema = new Schema({
 
-    eid : {
-        type : String,
-        required : true
-    },
+    
     name : {
         type : String,
         required : true
@@ -19,10 +16,7 @@ const EmergencySchema = new Schema({
         type : String,
         required : true
     },
-    email : {
-        type : String,
-        required : true
-    },
+   
     contactno : {
         type : Number,
         required : true
@@ -31,10 +25,7 @@ const EmergencySchema = new Schema({
         type : String,
         required : true
     },   
-    location : {
-        type : String,
-        required : true
-    },
+   
     hospital : {
         type : String,
         required : true

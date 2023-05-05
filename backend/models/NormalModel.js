@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 
 const NormalSchema = new Schema({
 
-    nid : {
-        type : String,
-        required : true
-    },
+   
     name : {
         type : String,
         required : true
@@ -19,10 +16,7 @@ const NormalSchema = new Schema({
         type : String,
         required : true
     },
-    email : {
-        type : String,
-        required : true
-    },
+   
     contactno : {
         type : String,
         required : true
@@ -31,10 +25,7 @@ const NormalSchema = new Schema({
         type : String,
         required : true
     },   
-    location : {
-        type : String,
-        required : true
-    },
+   
     hospital : {
         type : String,
         required : true

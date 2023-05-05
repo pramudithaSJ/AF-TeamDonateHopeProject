@@ -3,14 +3,12 @@ let Emergency = require('../models/EmergencyModel')
 
 //http://localhost:8020/emergency/add
 router.route("/add").post((req,res) => {
-    const eid = req.body.eid;
+  
     const name = req.body.name;
     const age = Number(req.body.age);
     const nic = req.body.nic;
-    const email = req.body.email;
     const contactno = Number(req.body.contactno);
     const bloodtype = req.body.bloodtype;
-    const location = req.body.location;
     const hospital = req.body.hospital;
     const bloodpint = req.body.bloodpint;
     const date = req.body.date;
@@ -19,14 +17,12 @@ router.route("/add").post((req,res) => {
 
   
     const newEmergency = new Emergency({
-        eid,
+       
         name,
         age,
         nic,
-        email,
         contactno,
         bloodtype,
-        location,
         hospital,
         bloodpint,
         date,
@@ -65,17 +61,15 @@ router.route("/delete/:eid").delete((req,res) => {
 //http://localhost:8020/emergency/update/:eid
 router.route("/update/:eid").put(async (req,res)=>{
     let emergencyId = req.params.eid;
-    const {eid,name,age,nic,email,contactno,bloodtype,location,hospital,bloodpint,date,time} = req.body;
+    const {name,age,nic,contactno,bloodtype,hospital,bloodpint,date,time} = req.body;
 
     const updateEmergency = {
-        eid,
+        
         name,
         age,
         nic,
-        email,
         contactno,
         bloodtype,
-        location,
         hospital,
         bloodpint,
         date,
@@ -95,14 +89,12 @@ router.route("/update/:eid").put(async (req,res)=>{
 router.route("/updateOne/:eid").put(async (req, res) => {
     let emergency = await Emergency.findById(req.params.eid);
     const data = {
-        eid: req.body.eid || Emergency.eid,
+       
         name: req.body.name || Emergency.name,
         age: req.body.age || Emergency.age,
         nic: req.body.nic || Emergency.nic,
-        email: req.body.email || Emergency.email,
         contactno: req.body.contactno || Emergency.contactno,
         bloodtype: req.body.bloodtype || Emergency.bloodtype,
-        location: req.body.location || Emergency.location,
         hospital: req.body.hospital || Emergency.hospital,
         bloodpint: req.body.bloodpint || Emergency.bloodpint, 
         date: req.body.date || Emergency.date,
