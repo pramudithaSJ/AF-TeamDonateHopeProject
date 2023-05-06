@@ -10,13 +10,16 @@ import LoginUser from "./IT20620202/UserView/login";
 import SignUpUser from "./IT20620202/UserView/signin";
 import Sidebar from "./IT20603236/UserDashboard";
 import AllRequests from "./IT20603236/Requests/Requests";
+import MasterSidebar from "./IT20636074/MasterDashboard";
+import CreateBloodDonation from "./IT20636074/components/CreateBloodDonation";
+import ViewEvents from "./IT20636074/components/ViewEvents";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<HomePage />} />
+          <Route path="/home" exact element={<Dashboard />} />
           <Route path="/login" exact element={<LoginUser />} />
           <Route path="/loginsample" exact element={<LoginUser />} />
           <Route path="/signin" exact element={<SignUpUser />} />
@@ -33,8 +36,15 @@ function App() {
 
           {/* 
           IT20620202 */}
-          <Route path="/user-dashboard" exact element={<Sidebar/>} />
+          <Route path="/Sidebar" exact element={<Sidebar/>} />
           <Route path="/requests" exact element={<AllRequests/>} />
+
+          {/* 
+          IT20636074 */}
+          <Route path="/" exact element={<MasterSidebar/>} />
+          <Route path="/CreateBloodEvent" exact element={<CreateBloodDonation/>} />
+          <Route path="/ViewEvents" exact element={<ViewEvents/>} />
+
         </Routes>
       </BrowserRouter>
     </div>

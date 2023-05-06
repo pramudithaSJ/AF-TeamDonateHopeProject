@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Requests from "./Requests/Requests";
+import CreateBloodDonation from "../IT20636074/components/CreateBloodDonation";
 import AllMasters from "../IT20600884/Master/AllMasters";
 import AllUsers from "../IT20600884/User/AllUsers";
 
@@ -52,7 +53,7 @@ export default function Sidebar() {
               </li>
               <li className="rounded-sm">
                 <button
-                  onClick={() => setSelectedField("events")}
+                  onClick={() => setSelectedField("CreateBloodEvent")}
                   className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
@@ -147,6 +148,7 @@ export default function Sidebar() {
       <div className="container mx-auto">
 
         {selectedField === "requests" ? <Requests/> : null}
+        {selectedField === "CreateBloodEvent" ? <CreateBloodDonation/> : null}
         {selectedField === "masters" ? <AllMasters /> : null}
         {selectedField === "users" ? <AllUsers /> : null}
       </div>

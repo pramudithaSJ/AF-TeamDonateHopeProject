@@ -51,6 +51,10 @@ app.use("/emergency",emergencyRouter);
 const normalRouter = require('./routes/NormalRoute')
 app.use("/normal",normalRouter);
 
+// emergency request
+const NursingMaster = require('./routes/NursingMaster')
+app.use("/nmaster",NursingMaster);
+
 
 
 
