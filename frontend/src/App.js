@@ -13,6 +13,7 @@ import AllRequests from "./IT20603236/Requests/Requests";
 import MasterSidebar from "./IT20636074/MasterDashboard";
 import CreateBloodDonation from "./IT20636074/components/CreateBloodDonation";
 import ViewEvents from "./IT20636074/components/ViewEvents";
+import UpdateBloodDonation from "./IT20636074/components/UpdateEvent";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" exact element={<MasterSidebar/>} />
           <Route path="/CreateBloodEvent" exact element={<CreateBloodDonation/>} />
           <Route path="/ViewEvents" exact element={<ViewEvents/>} />
+          <Route path="/UpdateBloodEvent" exact element={<UpdateBloodDonation/>} />
 
         </Routes>
       </BrowserRouter>
