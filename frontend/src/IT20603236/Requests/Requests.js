@@ -117,7 +117,7 @@ export default function AllRequests() {
           onClick={() => {
             setIsNewOpen(true);
           }}
-          class="  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="  text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800 "
         >
           {" "}
           Normal Requests
@@ -128,7 +128,7 @@ export default function AllRequests() {
           onClick={() => {
             setIsNewOpen1(true);
           }}
-          class="  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="  text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >
           {" "}
           Emergency Requests
@@ -139,6 +139,9 @@ export default function AllRequests() {
         isOpen={addNewModal}
         style={customStyles}
         contentLabel="Example Modal"
+
+        
+        
       >
         <div>
           {" "}
@@ -148,15 +151,17 @@ export default function AllRequests() {
             onSubmit={AddNormalRequests}
           >
             {({ errors, touched }) => (
-              <Form>
-                <h2 className="mb-5">Normal Requests</h2>
+              
+              <Form> 
+               
+                <h2 className="mb-5 text-center px-5 py-5 bg-red-800 text-white text-2xl" >Normal Requests</h2>
                 <div className="flex gap-4">
                  
 
                   <div className="flex-col w-full">
                     <div className="ll">
                       {" "}
-                      <p className="font-semibold" >Name</p>
+                      <p className="font-semibold">Name</p>
                     </div>
                     <div className="ll">
                       {" "}
@@ -245,8 +250,9 @@ export default function AllRequests() {
                   <div className="ll">
                     {" "}
 
-                    <select  className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full" name = "bloodtype" id = "bloodtype" placeholder="choose a Blood Type">
-                  
+                    <select  className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full " name = "bloodtype" id = "bloodtype" >
+                   
+                  <option value= "choose">Choose a Blood Type</option>
                   <option value= "AB+">AB+</option>
                   <option value= "AB-">AB-</option>
                   <option value= "A+">A+</option>
@@ -314,7 +320,7 @@ export default function AllRequests() {
 
                 <div className="w-full flex gap-2">
                   <button
-                    className="bg-red-800 w-1/2 text-white py-3 hover:bg-red-500"
+                    className="bg-red-900 w-1/2 text-white py-3 hover:bg-red-700"
                     onClick={() => {
                       setIsNewOpen(false);
                     }}
@@ -322,13 +328,15 @@ export default function AllRequests() {
                     close
                   </button>
                   <button
-                    className="bg-green-800 w-1/2 text-white py-3 hover:bg-green-500"
+                    className="bg-green-900 w-1/2 text-white py-3 hover:bg-green-700"
                     type="submit"
                   >
                     Add
                   </button>
                 </div>
+                
               </Form>
+              
             )}
           </Formik>
         </div>
@@ -363,6 +371,7 @@ export default function AllRequests() {
                         type="text"
                         name="name"
                         required={true}
+                        
                       />
                     </div>
                   </div>
@@ -424,6 +433,7 @@ export default function AllRequests() {
                       className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
                       type="number"
                       name="contactno"
+                      maxlength="10"
                     />
                   </div>
 
@@ -555,7 +565,7 @@ export default function AllRequests() {
             
                 <div className="w-full flex gap-2">
                   <button
-                    className="bg-red-800 w-1/2 text-white py-3 hover:bg-red-500"
+                    className="bg-red-900 w-1/2 text-white py-3 hover:bg-red-700"
                     onClick={() => {
                       setIsNewOpen1(false);
                     }}
@@ -563,7 +573,7 @@ export default function AllRequests() {
                     close
                   </button>
                   <button
-                    className="bg-green-800 w-1/2 text-white py-3 hover:bg-green-500"
+                    className="bg-green-900 w-1/2 text-white py-3 hover:bg-green-700"
                     type="submit"
                   >
                     Add
