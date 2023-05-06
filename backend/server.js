@@ -9,9 +9,8 @@ const app = express();
 require("dotenv").config();
 
 app.use(cors());
-var bodyParser = require('body-parser');              
+var bodyParser = require("body-parser");
 app.use(bodyParser.json());
-
 
 //database link
 const URL = process.env.MONGODB_URL;
@@ -20,44 +19,39 @@ const PORT = process.env.PORT || 8020;
 //create mongo configurations
 
 mongoose.connect(URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-
 const connection = mongoose.connection;
-connection.once("open",()=>{
-    console.log("mongoDB connection successful !!!");
-})
+connection.once("open", () => {
+  console.log("mongoDB connection successful !!!");
+});
 
 // doctor
-const doctorRouter = require('./routes/DoctorRoute')
-app.use("/doctor",doctorRouter);
+const doctorRouter = require("./routes/DoctorRoute");
+app.use("/doctor", doctorRouter);
 
 // master
-const masterRouter = require('./routes/MasterRoute')
-app.use("/master",masterRouter);
+const masterRouter = require("./routes/MasterRoute");
+app.use("/master", masterRouter);
 
 // users
-const userRouter = require('./routes/UserRoute')
-app.use("/user",userRouter);
+const userRouter = require("./routes/UserRoute");
+app.use("/user", userRouter);
 
 // emergency request
-const emergencyRouter = require('./routes/EmergencyRoute')
-app.use("/emergency",emergencyRouter);
-
+const emergencyRouter = require("./routes/EmergencyRoute");
+app.use("/emergency", emergencyRouter);
 
 // emergency request
-const normalRouter = require('./routes/NormalRoute')
-app.use("/normal",normalRouter);
+const normalRouter = require("./routes/NormalRoute");
+app.use("/normal", normalRouter);
 
-
-
+const donorRouter = require("./routes/DonorRoute");
+app.use("/donor", donorRouter);     
 
 //run the app using port
-app.listen(PORT, () =>{
-    console.log(`Server is up and running on port number: ${PORT}`);
-
-})
-
-   
+app.listen(PORT, () => {
+  console.log(`Server is up and running on port number: ${PORT}`);
+});
