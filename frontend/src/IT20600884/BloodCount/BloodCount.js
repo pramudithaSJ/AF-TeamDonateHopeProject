@@ -16,8 +16,8 @@ function BloodCount() {
          <div className="w-full bg-gray-100 py-10 text-center">
         <h1 className="text-2xl">Blood Counts</h1>
       </div>
-        <div className='flex nowrap gap-10 ml-20 mt-20'>
-            <div className="bg-white w-1/5">
+        <div className='flex nowrap gap-20 ml-20 mt-10'>
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
@@ -33,7 +33,7 @@ function BloodCount() {
                 </div>
             </div>
 
-            <div className="bg-white w-1/5">
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
@@ -49,7 +49,7 @@ function BloodCount() {
                 </div>
             </div>
 
-            <div className="bg-white w-1/5">
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
@@ -65,7 +65,7 @@ function BloodCount() {
                 </div>
             </div>
 
-            <div className="bg-white w-1/5">
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
@@ -83,8 +83,8 @@ function BloodCount() {
         
         </div>
 
-        <div className='flex nowrap gap-10 ml-20 mt-20 '>
-            <div className="bg-white w-1/5">
+        <div className='flex nowrap gap-20 ml-20 mt-20 '>
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
@@ -100,7 +100,7 @@ function BloodCount() {
                 </div>
             </div>
 
-            <div className="bg-white w-1/5">
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
@@ -116,7 +116,7 @@ function BloodCount() {
                 </div>
             </div>
 
-            <div className="bg-white w-1/5">
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
@@ -132,7 +132,7 @@ function BloodCount() {
                 </div>
             </div>
 
-            <div className="bg-white w-1/5">
+            <div className="bg-white w-1/6">
                 <div className="shadow-md rounded-lg">
                 <img
                     className="object-cover h-full w-full rounded-t-lg"
