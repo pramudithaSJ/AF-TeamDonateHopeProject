@@ -10,6 +10,8 @@ import LoginUser from "./IT20620202/UserView/login";
 import SignUpUser from "./IT20620202/UserView/signin";
 import Sidebar from "./IT20603236/UserDashboard";
 import AllRequests from "./IT20603236/Requests/Requests";
+import BloodCount from "./IT20600884/BloodCount/BloodCount";
+// import MyRequests from "./IT20603236/MyRequests/MyRequests";
 
 function App() {
   return (
@@ -26,15 +28,15 @@ function App() {
           <Route path="/teachers02" exact element={<AllMasters />} />
           <Route path="/students" exact element={<AllMasters />} />
           <Route path="/teachers" exact element={<AllMasters />} />
-          <Route path="/teachers01" exact element={<AllMasters />} />
-
-          {/* IT20600884 */}
-          <Route path="/doctors" exact element={<AllDoctors />} />
-
-          {/* 
-          IT20620202 */}
           <Route path="/user-dashboard" exact element={<Sidebar/>} />
           <Route path="/requests" exact element={<AllRequests/>} />
+          <Route path="/doctors" exact element={<AllDoctors />} />
+          <Route path="/blood-count" exact element={<BloodCount/>} />
+          {/* <Route path="/my-requests" exact element={<MyRequests/>} /> */}
+
+
+      
+          
         </Routes>
       </BrowserRouter>
     </div>

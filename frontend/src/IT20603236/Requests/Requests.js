@@ -112,27 +112,27 @@ export default function AllRequests() {
     <section className="table-auto overflow-y-scroll h-screen pb-10">
      
       <div className="w-full flex flex-row px-80 mt-60">
-        <button
-          type="button"
-          onClick={() => {
-            setIsNewOpen(true);
-          }}
-          class="  text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-6 py-4 text-center inline-flex items-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800 "
-        >
-          {" "}
-          Normal Requests
-        </button>
+          <button
+            type="button"
+            onClick={() => {
+              setIsNewOpen(true);
+            }}
+            class="  text-black bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-600 font-large rounded-lg text-xl px-20 py-20 text-center inline-flex items-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800 "
+          >
+            {" "}
+            Normal Requests
+          </button>
         <div className="mx-4"></div>
-        <button
-          type="button"
-          onClick={() => {
-            setIsNewOpen1(true);
-          }}
-          class="  text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-        >
-          {" "}
-          Emergency Requests
-        </button>
+          <button
+            type="button"
+            onClick={() => {
+              setIsNewOpen1(true);
+            }}
+            class="  text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-700 font-medium rounded-lg text-lg px-20 py-20 text-center inline-flex items-center dark:bg-red-800 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          >
+            {" "}
+            Emergency Requests
+          </button>
       </div>
 
       <Modal

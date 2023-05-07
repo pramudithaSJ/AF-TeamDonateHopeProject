@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AllDoctors from "./Doctor/AllDoctors";
 import AllMasters from "./Master/AllMasters";
 import AllUsers from "./User/AllUsers";
+import BloodCount from "./BloodCount/BloodCount";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -130,7 +131,7 @@ export default function Sidebar() {
               </li>{" "}
               <li className="rounded-sm">
                 <button
-                  onClick={() => setSelectedField("total-blood")}
+                  onClick={() => setSelectedField("blood-count")}
                   className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
@@ -210,6 +211,7 @@ export default function Sidebar() {
         {selectedField === "doctors" ? <AllDoctors /> : null}
         {selectedField === "masters" ? <AllMasters /> : null}
         {selectedField === "users" ? <AllUsers /> : null}
+        {selectedField === "blood-count" ? <BloodCount/> : null}
       </div>
     </div>
   );
