@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyProfile from "../myProfile";
+import { Events } from "../event";
 
 export default function UserDashboard() {
   const [open, setOpen] = useState(false);
@@ -60,7 +61,7 @@ export default function UserDashboard() {
               </li>
               <li className="rounded-sm">
                 <button
-                  onClick={() => setSelectedField("users")}
+                  onClick={() => setSelectedField("events")}
                   className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
                 >
                   <svg
@@ -138,7 +139,7 @@ export default function UserDashboard() {
           </div>
         ) : null}
         {selectedField === "myProfile" ?<MyProfile/> : null}
-        {selectedField === "masters" ? null : null}
+        {selectedField === "events" ?<Events/> : null}
         {selectedField === "users" ? null : null}
       </div>
     </div>
