@@ -9,11 +9,15 @@ const DonorSchema = new Schema({
     type: String,
     required: true,
   },
+  email:{
+    type: String,
+    required: true,
+  },
   NIC: {
     type: Number,
     required: true,
   },
-  address: {
+  gender: {
     type: String,
     required: true,
   },
@@ -32,6 +36,11 @@ const DonorSchema = new Schema({
     type: Number,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
+  
 });
 
 const Donor = mongoose.model("donor", DonorSchema);

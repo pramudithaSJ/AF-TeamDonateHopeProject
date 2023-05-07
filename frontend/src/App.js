@@ -8,17 +8,23 @@ import HomePage from "./IT20620202/UserView/home";
 
 import LoginUser from "./IT20620202/UserView/login";
 import SignUpUser from "./IT20620202/UserView/signin";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import UserDashboard from "./IT20620202/UserView/componenent/userDashboard";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 function App() {
   return (
     <div>
       <BrowserRouter>
+      <ToastContainer/>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
           <Route path="/login" exact element={<LoginUser />} />
-          <Route path="/loginsample" exact element={<LoginUser />} />
           <Route path="/signin" exact element={<SignUpUser />} />
           <Route path="/dashboard" exact element={<Dashboard />} />
+          <Route path="/myProfile" exact element={<UserDashboard/>} />
           <Route path="/doctors" exact element={<AllDoctors />} />
           <Route path="/masters" exact element={<AllMasters />} />
           <Route path="/teachers02" exact element={<AllMasters />} />
