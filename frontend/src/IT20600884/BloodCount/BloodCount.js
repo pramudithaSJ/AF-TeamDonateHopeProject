@@ -13,6 +13,9 @@ import AB_positive from "../Images/AB+.jpg"
 function BloodCount() {
   return (
     <div className='ml-15'>
+         <div className="w-full bg-gray-100 py-10 text-center">
+        <h1 className="text-2xl">Blood Counts</h1>
+      </div>
         <div className='flex nowrap gap-10 ml-20 mt-20'>
             <div className="bg-white w-1/5">
                 <div className="shadow-md rounded-lg">

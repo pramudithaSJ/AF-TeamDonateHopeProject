@@ -11,7 +11,7 @@ import SignUpUser from "./IT20620202/UserView/signin";
 import Sidebar from "./IT20603236/UserDashboard";
 import AllRequests from "./IT20603236/Requests/Requests";
 import BloodCount from "./IT20600884/BloodCount/BloodCount";
-// import MyRequests from "./IT20603236/MyRequests/MyRequests";
+import MyRequests from "./IT20603236/MyRequests/MyRequests";
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
           <Route path="/requests" exact element={<AllRequests/>} />
           <Route path="/doctors" exact element={<AllDoctors />} />
           <Route path="/blood-count" exact element={<BloodCount/>} />
-          {/* <Route path="/my-requests" exact element={<MyRequests/>} /> */}
+          <Route path="/my-requests" exact element={<MyRequests/>} />
 
 
       

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Requests from "./Requests/Requests";
 import AllMasters from "../IT20600884/Master/AllMasters";
 import AllUsers from "../IT20600884/User/AllUsers";
+import MyRequests from "./MyRequests/MyRequests";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -149,6 +150,7 @@ export default function Sidebar() {
         {selectedField === "requests" ? <Requests/> : null}
         {selectedField === "masters" ? <AllMasters /> : null}
         {selectedField === "users" ? <AllUsers /> : null}
+        {selectedField === "my-requests" ? <MyRequests/> : null}
       </div>
     </div>
   );
