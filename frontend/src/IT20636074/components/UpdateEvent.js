@@ -3,10 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Modal from "react-modal";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import Sidebar from "../../IT20603236/UserDashboard";
-import * as Yup from "yup";
+import logo from "./img/Hope.png";
+
 
 
 const customStyles = {
@@ -121,7 +119,9 @@ export default function UpdateBloodDonation() {
     >
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-white">User Dashboard</h2>
+          <h2 className="text-xl font-bold text-white">
+            <img src={logo} />
+          </h2>
           
         </div>
 
@@ -155,6 +155,29 @@ export default function UpdateBloodDonation() {
               </button>
             </li>
             
+            <li className="rounded-sm">
+                <button
+                id="first"
+                  onClick={() => setSelectedField("CloseEvent")}
+                  className="flex items-center p-2 space-x-3 rounded-md hover:bg-red-800 w-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-gray-100"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                    />
+                  </svg>
+                  <span className="text-gray-100">Close Event</span>
+                </button>
+              </li>
             
             <li className="rounded-sm">
               <button

@@ -143,6 +143,27 @@ export default function CloseEvent() {
             </div>
             <div className="mb-4">
                 <label htmlFor="event-location" className="block text-gray-700 font-bold mb-2">
+                    Closing Date
+                </label>
+                <input
+                    type="date"
+                    placeholder="Enter closing date"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+            </div>
+            <div className="mb-4">
+                <label htmlFor="event-location" className="block text-gray-700 font-bold mb-2">
+                    Closing time
+                </label>
+                <input
+                    type="time"
+                    id="event-location"
+                    placeholder="Enter closing time"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+            </div>
+            <div className="mb-4">
+                <label htmlFor="event-location" className="block text-gray-700 font-bold mb-2">
                     Blood count
                 </label>
                 <textarea class="resize-none h-40 w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>

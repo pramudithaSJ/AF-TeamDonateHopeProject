@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import ViewEvents from "./components/ViewEvents";
 import CloseEvent from "./components/CloseEvent";
+import logo from "./components/img/Hope.png";
 
 export default function MasterSidebar() {
   const [open, setOpen] = useState(false);
@@ -19,7 +20,9 @@ export default function MasterSidebar() {
       >
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white">User Dashboard</h2>
+            <h2 className="text-xl font-bold text-white">
+              <img src={logo} />
+            </h2>
             
           </div>
 
