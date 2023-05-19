@@ -64,7 +64,7 @@ export default function AllDoctors() {
         }
       })
       .catch((error) => toast.error(error));
-  }, [items]);
+  },[items]);
 
   const deleteItem = (id) => {
     axios

@@ -22,12 +22,13 @@ const customStyles = {
 export default function MyRequests() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [contact, setContact] = useState("");
+  const [name, setname] = useState("");
+  const [age, setage] = useState("");
+  const [nic, setnic] = useState("");
+  const [contactno, setcontactno] = useState("");
+  const [bloodtype, setbloodtype] = useState("");
+  const [hospital, sethospital] = useState("");
+  const [bloodpint, setbloodpint] = useState("");
   const [UpdateModal, setUpdateModal] = useState(false);
   const [UpdateItem, setUpdateItem] = useState("");
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -39,19 +40,7 @@ export default function MyRequests() {
     quantity: 0,
   };
 
-  // const validationSchema = Yup.object().shape({
-  //   age: Yup.number().required("Required Age"),
-  //   email: Yup.string().email("Invalid email address").required("Required"),
-  //   address: Yup.string()
-  //     .matches(/^0\d{9}$/, {
-  //       message: "address number must start with 0 and have exactly 10 digits",
-  //     })
-  //     .required("address number is required"),
-  //   contact: Yup.string().required("Required contact"),
-  //   confirmcontact: Yup.string()
-  //     .oneOf([Yup.ref("contact")], "contacts must match")
-  //     .required("Required"),
-  // });
+
 
   useEffect(() => {
     axios
@@ -64,11 +53,11 @@ export default function MyRequests() {
         }
       })
       .catch((error) => toast.error(error));
-  }, [items]);
+  },[items]);
 
   const deleteItem = (id) => {
     axios
-      .delete(`http://localhost:8020/doctor/delete/${id} `)
+      .delete(`http://localhost:8020/normal/delete/${id} `)
       .then(() => {
         toast.error("Deleted Successfully!!");
       })
@@ -77,31 +66,55 @@ export default function MyRequests() {
       });
   };
 
-  
+  function AddNormal(values) {
+    console.log(values);
+
+    const response = axios
+      .post(`http://localhost:8020/normal/add`, {
+        name: values.name,
+        age: values.age,
+        nic: values.nic,
+        contactno: values.contactno,
+        bloodtype: values.bloodtype,
+        hospital: values.hospital,
+        bloodpint: values.bloodpint
+      })
+      .then(() => {
+        toast.success("Added Successfully!!");
+        setIsNewOpen(false);
+      })
+      .catch(() => {
+        toast.error("error!!");
+      });
+  }
+
   function getOne(id) {
     const response = axios
-      .get(`http://localhost:8020/doctor/get/${id}`)
+      .get(`http://localhost:8020/normal/get/${id}`)
       .then((response) => {
         setIsOpen(true);
-        setId(response?.data?.id);
-        setName(response?.data?.name);
-        setAge(response?.data?.age);
-        setEmail(response?.data?.email);
-        setContact(response?.data?.contact);
-        setAddress(response?.data?.address);
+        setname(response?.data?.name);
+        setage(response?.data?.age);
+        setnic(response?.data?.nic);
+        setcontactno(response?.data?.contactno);
+        setbloodtype(response?.data?.bloodtype);
+        sethospital(response?.data?.hospital);
+        setbloodpint(response?.data?.bloodpint);
         setUpdateItem(response?.data?._id);
         console.log(response?.data?._id);
       });
   }
   function updateItem(values) {
     const response = axios
-      .put(`http://localhost:8020/doctor/update/${UpdateItem}`, {
-        id: values.id,
+      .put(`http://localhost:8020/normal/update/${UpdateItem}`, {
+       
         name: values.name,
         age: values.age,
-        email: values.email,
-        contact: values.address,
-        contact: values.contact,
+        nic: values.nic,
+        contactno: values.contactno,
+        bloodtype: values.bloodtype,
+        hospital: values.hospital,
+        bloodpint: values.bloodpint,
       })
       .then((response) => {
         toast.success("update Successful");
@@ -120,7 +133,6 @@ export default function MyRequests() {
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-900 dark:text-gray-400">
               <tr>
-              
                 <th scope="col" class="px-6 py-3">
                   Name
                 </th>
@@ -131,16 +143,16 @@ export default function MyRequests() {
                   NIC
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Contact
+                  contactno
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Blood Type
+                  blood Type
                 </th>
                 <th scope="col" class="px-6 py-3">
                   Hospital
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Blood Pint
+                  blood Pints
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
                   Action
@@ -150,8 +162,12 @@ export default function MyRequests() {
             <tbody>
               {items.map((item) => (
                 <tr class="bg-white border-b dark:bg-gray-100 dark:border-gray-200 hover:bg-gray-10 dark:hover:bg-gray-200">
-                 
-                  <td class="px-6 py-4 dark:text-black">{item.name}</td>
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-black-950 whitespace-nowrap dark:text-black"
+                  >
+                    {item.name}
+                  </th>
                   <td class="px-6 py-4 dark:text-black">{item.age}</td>
                   <td class="px-6 py-4 dark:text-black">{item.nic}</td>
                   <td class="px-6 py-4 dark:text-black">{item.contactno}</td>
@@ -187,7 +203,7 @@ export default function MyRequests() {
                       onClick={() => {
                         if (
                           window.confirm(
-                            "Are you sure you want to delete this Doctor ?"
+                            "Are you sure you want to delete this Normal Request ?"
                           )
                         ) {
                           deleteItem(item._id);
@@ -217,6 +233,191 @@ export default function MyRequests() {
         </div>
       </div>
       
+      <Modal
+        isOpen={modalIsOpen}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <div>
+          {" "}
+          <Formik
+            initialValues={{
+              name: name,
+              age: age,
+              nic: nic,
+              contactno: contactno,
+              bloodtype: bloodtype,
+              hospital: hospital,
+              bloodpint: bloodpint
+              
+            }}
+            // validationSchema={validationSchema}
+            onSubmit={updateItem}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <div className="flex gap-4">
+                  <div className="flex-col w-full">
+                    <div className="ll">
+                      {" "}
+                      <p className="font-semibold">Name</p>
+                    </div>
+                    <div className="ll">
+                      {" "}
+                      <Field
+                        className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                        type="text"
+                        name="name"
+                        required={true}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-col w-full">
+                    <div className="ll">
+                      {" "}
+                      <p className="font-semibold">Age</p>
+                    </div>
+                    <div className="ll">
+                      {" "}
+                      <Field
+                        className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                        type="text"
+                        name="age"
+                        required={true}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex-col w-full">
+                    <div className="ll">
+                      {" "}
+                      <p className="font-semibold">NIC</p>
+                    </div>
+                    <div className="ll">
+                      {" "}
+                      <Field
+                        className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                        type="text"
+                        name="nic"
+                        required={true}
+                      />
+                    </div>
+
+                    <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="nic"
+                   />
+                </div>
+                
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">contactno</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="text"
+                      name="contactno"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="contactno"
+                  />
+                </div>
+
+                <div className="flex-col w-full">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">blood Type</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
+                      type="text"
+                      name="bloodtype"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs"
+                    name="bloodtype"
+                  />
+                </div>
+
+                <div className="flex-col">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Hospital</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
+                      type="text"
+                      name="hospital"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs italic"
+                    name="hospital"
+                  />
+                </div>
+
+                <div className="flex-col">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">blood Pint</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
+                      type="text"
+                      name="bloodpint"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs italic"
+                    name="bloodpint"
+                  />
+                </div>
+                
+
+                <div className="w-full flex gap-2">
+                  <button
+                    className="bg-red-800 w-1/2 text-white py-3 hover:bg-red-500"
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
+                    close
+                  </button>
+                  <button
+                    className="bg-green-800 w-1/2 text-white py-3 hover:bg-green-500"
+                    type="submit"
+                  >
+                    Update
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </Modal>
     </section>
   );
 }
