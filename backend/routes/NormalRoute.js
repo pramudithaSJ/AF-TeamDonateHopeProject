@@ -39,7 +39,7 @@ router.route("/").get((req,res)=>{
     })
 })
 
-//delete emergency request
+//delete normal request
 router.route("/delete/:nid").delete((req,res) => {
     const normalId = req.params.nid;
 
@@ -90,13 +90,20 @@ router.route("/updateOne/:nid").put(async (req, res) => {
         bloodtype: req.body.bloodtype || Normal.bloodtype,
         hospital: req.body.hospital || Normal.hospital,
         bloodpint: req.body.bloodpint || Normal.bloodpint, 
- 
-        
-
     };
     normal = await Normal.findByIdAndUpdate(req.params.nid, data, { new: true });
     res.json(normal);
 });
+
+//get one normal requests
+router.route("/get/:id").get((req,res)=>{
+    let Id = req.params.id;
+    Normal.findById(Id).then((normal)=>{
+        res.json(normal)
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
 
 // http://localhost:8020/normal/:name
 router.route("/:contactno").get((req, res) => {

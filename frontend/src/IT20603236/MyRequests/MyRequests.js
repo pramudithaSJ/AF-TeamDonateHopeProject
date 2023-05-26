@@ -43,11 +43,8 @@ export default function MyRequests() {
 
 
   useEffect(() => {
-
-    // let contact = localStorage.getItem("contactno")
-
     axios
-      .get(`http://localhost:8020/normal/0722324450`)
+      .get("http://localhost:8020/normal/0722329450")
       .then((response) => {
         if (response) {
           setItems(response.data);
@@ -62,34 +59,14 @@ export default function MyRequests() {
     axios
       .delete(`http://localhost:8020/normal/delete/${id} `)
       .then(() => {
-        toast.error("Deleted Successfully!!");
+        alert("Request Deleted")
       })
       .catch((err) => {
         alert(err);
       });
   };
 
-  // function AddNormal(values) {
-  //   console.log(values);
-
-  //   const response = axios
-  //     .post(`http://localhost:8020/normal/add`, {
-  //       name: values.name,
-  //       age: values.age,
-  //       nic: values.nic,
-  //       contactno: values.contactno,
-  //       bloodtype: values.bloodtype,
-  //       hospital: values.hospital,
-  //       bloodpint: values.bloodpint
-  //     })
-  //     .then(() => {
-  //       toast.success("Added Successfully!!");
-  //       setIsNewOpen(false);
-  //     })
-  //     .catch(() => {
-  //       toast.error("error!!");
-  //     });
-  // }
+  
 
   function getOne(id) {
     const response = axios
@@ -104,24 +81,22 @@ export default function MyRequests() {
         sethospital(response?.data?.hospital);
         setbloodpint(response?.data?.bloodpint);
         setUpdateItem(response?.data?._id);
-        console.log(response?.data?._id);
+        console.log(response?.data?._name);
       });
   }
   function updateItem(values) {
-    alert(values.id)
     const response = axios
       .put(`http://localhost:8020/normal/update/${UpdateItem}`, {
-       
         name: values.name,
         age: values.age,
         nic: values.nic,
         contactno: values.contactno,
         bloodtype: values.bloodtype,
         hospital: values.hospital,
-        bloodpint: values.bloodpint,
+        bloodpint: values.bloodpint
       })
       .then((response) => {
-        toast.success("update Successful");
+        toast.success("Update Successfully");
         setIsOpen(false);
       });
   }
@@ -147,16 +122,16 @@ export default function MyRequests() {
                   NIC
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  contactno
+                  Contact Number
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  blood Type
+                  Blood Type
                 </th>
                 <th scope="col" class="px-6 py-3">
                   Hospital
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  blood Pints
+                  Blood Pints
                 </th>
                 <th scope="col" class="px-6 py-3 text-center">
                   Action
@@ -172,6 +147,7 @@ export default function MyRequests() {
                   >
                     {item.name}
                   </th>
+                
                   <td class="px-6 py-4 dark:text-black">{item.age}</td>
                   <td class="px-6 py-4 dark:text-black">{item.nic}</td>
                   <td class="px-6 py-4 dark:text-black">{item.contactno}</td>
@@ -189,7 +165,7 @@ export default function MyRequests() {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        strokeWidth={1.2}
+                        strokeWnameth={1.2}
                         stroke="currentColor"
                         className="w-5 h-5"
                       >
@@ -207,7 +183,7 @@ export default function MyRequests() {
                       onClick={() => {
                         if (
                           window.confirm(
-                            "Are you sure you want to delete this Normal Request ?"
+                            "Are you sure you want to delete this Request ?"
                           )
                         ) {
                           deleteItem(item._id);
@@ -218,7 +194,7 @@ export default function MyRequests() {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        strokeWidth={1.5}
+                        strokeWnameth={1.5}
                         stroke="currentColor"
                         className="w-5 h-5 text-red-700 hover:text-red-100"
                       >
@@ -255,7 +231,7 @@ export default function MyRequests() {
               bloodpint: bloodpint
               
             }}
-            // validationSchema={validationSchema}
+            // valnameationSchema={valnameationSchema}
             onSubmit={updateItem}
           >
             {({ errors, touched }) => (
@@ -319,7 +295,7 @@ export default function MyRequests() {
                 <div className="flex-col w-full">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">contactno</p>
+                    <p className="font-semibold">Contact No</p>
                   </div>
                   <div className="ll">
                     {" "}
@@ -340,7 +316,7 @@ export default function MyRequests() {
                 <div className="flex-col w-full">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">blood Type</p>
+                    <p className="font-semibold">Blood Type</p>
                   </div>
                   <div className="ll">
                     {" "}
@@ -382,7 +358,7 @@ export default function MyRequests() {
                 <div className="flex-col">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">blood Pint</p>
+                    <p className="font-semibold">Blood Pint</p>
                   </div>
                   <div className="ll">
                     {" "}
