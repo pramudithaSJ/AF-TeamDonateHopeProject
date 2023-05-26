@@ -79,7 +79,9 @@ router.route("/updateOne/:id").put(async (req, res) => {
     password: req.body.password || donor.password,
   };
   donor = await Donor.findByIdAndUpdate(req.params.id, data, { new: true });
-  res.json(salary);
+  res.json(donor);
 });
+
+
 
 module.exports = router;

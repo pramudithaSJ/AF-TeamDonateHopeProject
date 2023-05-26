@@ -15,16 +15,17 @@ const MyProfile = () => {
   const [userData, setUserData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
-  const [gender, setGender] = React.useState(null);
+  const [gender, setGender] = useState(null);
   const [bloodGroup, setBloodGroup] = React.useState(null);
   const [phone, setPhone] = React.useState();
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const userId = localStorage.getItem("userId");
+
   let navigate = useNavigate();
 
   useEffect(() => {
     setFormLoading(true);
 
-    const userId = localStorage.getItem("userId");
     const response = axios
       .get(`http://localhost:8020/donor/users/${userId}`, {})
       .then((res) => {
@@ -66,13 +67,10 @@ const MyProfile = () => {
   });
   const onSubmit = (values) => {
     setIsLoading(true);
-    console.log(values);
-    console.log(phone);
-    console.log(bloodGroup);
-    console.log(gender);
+
     const responses = axios
 
-      .post(`http://localhost:8020/donor/register`, {
+      .put(`http://localhost:8020/donor/updateOne/${userId}`, {
         firstName: values.firstName,
         lastName: values.lastName,
         NIC: values.NIC,
@@ -85,12 +83,11 @@ const MyProfile = () => {
         password: values.password,
       })
       .then((response) => {
-        toast.success("User Added Successfully");
-        navigate("/login");
+        toast.success("User Updated Successfully");
         setIsLoading(false);
       })
       .catch((error) => {
-        alert("user not Added");
+        toast.error("Something went wrong");
         setIsLoading(false);
       });
   };
@@ -447,7 +444,6 @@ const MyProfile = () => {
                     </div>
                     <div className="ll">
                       {" "}
-
                       <input
                         class="block w-full text-sm border-2 my-2"
                         id="file_input"
