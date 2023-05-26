@@ -49,6 +49,8 @@ export default function AllRequests() {
       .then(() => {
         toast.success("Added Successfully!!");
         setIsNewOpen(false);
+
+      
       })
       .catch(() => {
         toast.error("error!!");

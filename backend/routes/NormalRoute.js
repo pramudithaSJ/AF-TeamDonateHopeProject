@@ -11,9 +11,6 @@ router.route("/add").post((req,res) => {
     const hospital = req.body.hospital;
     const bloodpint = req.body.bloodpint;
   
-
-
-  
     const newNormal = new Normal({
         
         name,
@@ -101,26 +98,17 @@ router.route("/updateOne/:nid").put(async (req, res) => {
     res.json(normal);
 });
 
-//get one normal request 
-router.route("/get/:nid").get((req,res)=>{
-    let normalId =  req.params.nid;
-    Normal.findById(normalId).then((normal)=>{
-        res.json(normal);
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
-
-//get one of the normal request
-//http://localhost:8020/normal/get/:nid
-router.route("/get/:nid").get((req,res)=>{
-    let normalId = req.params.nid;
-    MealPlan.findById(normalId).then((item)=>{
-        res.json(item)
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
+// http://localhost:8020/normal/:name
+router.route("/:contactno").get((req, res) => {
+    const contactNo = req.params.contactno;
+  
+    Normal.find({ contactno: contactNo }).then((item) => {
+      res.json(item);
+    }).catch((err) => {
+      console.log(err);
+      res.status(500).json("Error occurred");
+    });
+  });
 
 
 

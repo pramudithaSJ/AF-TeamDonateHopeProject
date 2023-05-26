@@ -43,8 +43,11 @@ export default function MyRequests() {
 
 
   useEffect(() => {
+
+    // let contact = localStorage.getItem("contactno")
+
     axios
-      .get("http://localhost:8020/normal/")
+      .get(`http://localhost:8020/normal/0722324450`)
       .then((response) => {
         if (response) {
           setItems(response.data);
@@ -66,27 +69,27 @@ export default function MyRequests() {
       });
   };
 
-  function AddNormal(values) {
-    console.log(values);
+  // function AddNormal(values) {
+  //   console.log(values);
 
-    const response = axios
-      .post(`http://localhost:8020/normal/add`, {
-        name: values.name,
-        age: values.age,
-        nic: values.nic,
-        contactno: values.contactno,
-        bloodtype: values.bloodtype,
-        hospital: values.hospital,
-        bloodpint: values.bloodpint
-      })
-      .then(() => {
-        toast.success("Added Successfully!!");
-        setIsNewOpen(false);
-      })
-      .catch(() => {
-        toast.error("error!!");
-      });
-  }
+  //   const response = axios
+  //     .post(`http://localhost:8020/normal/add`, {
+  //       name: values.name,
+  //       age: values.age,
+  //       nic: values.nic,
+  //       contactno: values.contactno,
+  //       bloodtype: values.bloodtype,
+  //       hospital: values.hospital,
+  //       bloodpint: values.bloodpint
+  //     })
+  //     .then(() => {
+  //       toast.success("Added Successfully!!");
+  //       setIsNewOpen(false);
+  //     })
+  //     .catch(() => {
+  //       toast.error("error!!");
+  //     });
+  // }
 
   function getOne(id) {
     const response = axios
@@ -105,6 +108,7 @@ export default function MyRequests() {
       });
   }
   function updateItem(values) {
+    alert(values.id)
     const response = axios
       .put(`http://localhost:8020/normal/update/${UpdateItem}`, {
        

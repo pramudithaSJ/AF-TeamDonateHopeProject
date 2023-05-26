@@ -7,6 +7,7 @@ const NormalSchema = new Schema({
     name : {
         type : String,
         required : true
+        
     },
     age : {
         type : Number,

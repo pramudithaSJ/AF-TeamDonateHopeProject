@@ -47,9 +47,14 @@ const emergencyRouter = require('./routes/EmergencyRoute')
 app.use("/emergency",emergencyRouter);
 
 
-// emergency request
+// normal request
 const normalRouter = require('./routes/NormalRoute')
 app.use("/normal",normalRouter);
+
+// blood request
+const bloodRouter = require('./routes/BloodRoute')
+app.use("/blood",bloodRouter);
+
 
 
 

@@ -45,6 +45,7 @@ router.route("/").get((req,res)=>{
     })
 })
 
+
 //delete emergency request
 router.route("/delete/:eid").delete((req,res) => {
     const emergencyId = req.params.eid;
