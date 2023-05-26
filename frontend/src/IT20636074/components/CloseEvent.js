@@ -19,7 +19,6 @@ const customStyles = {
 
 export default function CloseEvent() {
   const navigate = useNavigate();
-  const [eventName, setEventName] = useState("");
   const [organizationTeam, setorganizationTeam] = useState("");
   const [edate, setedate] = useState("");
   const [etime, setetime] = useState("");
@@ -27,15 +26,20 @@ export default function CloseEvent() {
   const [eventLocation, setEventLocation] = useState("");
   const [file, setFile] = useState(null);
   const [items, setItems] = useState([]);
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [UpdateModal, setUpdateModal] = useState(false);
-  const [UpdateItem, setUpdateItem] = useState("");
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [addNewModal, setIsNewOpen] = useState(false);
+  const [eventName, seteventName] = useState([]);
+  const [participants, setparticipants] = useState([]);
+  const [closingDate, setclosingDate] = useState([]);
+  const [closingTime, setclosingTime] = useState([]);
+  const [APlus, setAPlus] = useState();
+  const [BPlus, setBPlus] = useState();
+  const [OPlus, setOPlus] = useState();
+  const [ABPlus, setABPlus] = useState();
+  const [AMynus, setAMynus] = useState();
+  const [BMynus, setBMynus] = useState();
+  const [OMynus, setOMynus] = useState();
+  const [ABMynus, setABMynus] = useState();
+  const [doctorIncharge, setdoctorIncharge] = useState([]);
+
   const initialValues = {
     code: "",
     name: "",
@@ -46,25 +50,30 @@ export default function CloseEvent() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const response = axios
-    .post(`http://localhost:8020/nmaster/add`, {
+    .post(`http://localhost:8020/nmaster/addCloseEvent`, {
       eventName: eventName,
-      orgTeam: organizationTeam,
-      location: eventLocation,
-      date: edate,
-      time:etime,
-      contact: contact
+      participants: participants,
+      closingDate: closingDate,
+      closingTime: closingTime,
+      APlus:APlus,
+      BPlus: BPlus,
+      OPlus:OPlus,
+      ABPlus: ABPlus,
+      AMynus:AMynus,
+      BMynus: BMynus,
+      OMynus:OMynus,
+      ABMynus: ABMynus,
+      doctorIncharge: doctorIncharge
     })
     .then(() => {
-      alert("Added Successfully!!");
+      alert("Closed Successfully!!");
     })
     .catch(() => {
       alert("error!!");
     });
   };
 
-  const handleFileUpload = (event) => {
-    setFile(event.target.files[0]);
-  };
+
   useEffect(() => {
     axios
       .get("http://localhost:8020/master/")
@@ -77,33 +86,6 @@ export default function CloseEvent() {
       })
       .catch((error) => toast.error(error));
   }, [items]);
-
-  const deleteItem = (id) => {
-    axios
-      .delete(`http://localhost:8020/master/delete/${id} `)
-      .then(() => {
-        toast.error("Deleted Successfully!!");
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
-
-  function getOne(id) {
-    const response = axios
-      .get(`http://localhost:8020/master/get/${id}`)
-      .then((response) => {
-        setIsOpen(true);
-        setId(response?.data?.id);
-        setName(response?.data?.name);
-        setAge(response?.data?.age);
-        setEmail(response?.data?.email);
-        setContact(response?.data?.contact);
-        setAddress(response?.data?.address);
-        setUpdateItem(response?.data?._id);
-        console.log(response?.data?._id);
-      });
-  }
 
   return (
     <div style={{background:"#f3f4f6","margin-top":"-20px"}}>
@@ -126,6 +108,8 @@ export default function CloseEvent() {
             <input
                 type="text"
                 id="event-name"
+                value={eventName}
+                onChange={(event) => seteventName(event.target.value)}
                 placeholder="Enter event name"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
@@ -137,6 +121,8 @@ export default function CloseEvent() {
                 <input
                     type="text"
                     id="event-location"
+                    value={participants}
+                    onChange={(event) => setparticipants(event.target.value)}
                     placeholder="Enter no of participants"
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -147,6 +133,8 @@ export default function CloseEvent() {
                 </label>
                 <input
                     type="date"
+                    value={closingDate}
+                    onChange={(event) => setclosingDate(event.target.value)}
                     placeholder="Enter closing date"
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -158,6 +146,8 @@ export default function CloseEvent() {
                 <input
                     type="time"
                     id="event-location"
+                    value={closingTime}
+                    onChange={(event) => setclosingTime(event.target.value)}
                     placeholder="Enter closing time"
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -166,7 +156,76 @@ export default function CloseEvent() {
                 <label htmlFor="event-location" className="block text-gray-700 font-bold mb-2">
                     Blood count
                 </label>
-                <textarea class="resize-none h-40 w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="A+"
+                  value={APlus}
+                  onChange={(event) => setAPlus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="B+"
+                  value={BPlus}
+                  onChange={(event) => setBPlus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="O+"
+                  value={OPlus}
+                  onChange={(event) => setOPlus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="AB+"
+                  value={ABPlus}
+                  onChange={(event) => setABPlus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="A-"
+                  value={AMynus}
+                  onChange={(event) => setAMynus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="B-"
+                  value={BMynus}
+                  onChange={(event) => setBMynus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="O-"
+                  value={OMynus}
+                  onChange={(event) => setOMynus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                /> 
+                <input
+                  type="number"
+                  id="event-location"
+                  placeholder="O-"
+                  value={ABMynus}
+                  onChange={(event) => setABMynus(event.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />              
             </div>
             <div className="mb-4">
                 <label htmlFor="event-location" className="block text-gray-700 font-bold mb-2">
@@ -175,13 +234,16 @@ export default function CloseEvent() {
                 <input
                     type="text"
                     id="event-location"
+                    value={doctorIncharge}
+                    onChange={(event) => setdoctorIncharge(event.target.value)}
                     placeholder="Enter Doctor Incharge Name"
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
             </div>
             <div className="flex items-center justify-center">
             <button
-                type="submit"
+                type="button"
+                onClick={handleSubmit}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
                 Close

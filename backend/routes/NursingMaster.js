@@ -1,5 +1,6 @@
 const router = require("express").Router();
-let Master = require('../models/EvenModal')
+let Master = require('../models/CloseEventModal')
+let CloseEventModal = require('../models/CloseEventModal')
 
 //http://localhost:8020/master/add
 router.route("/add").post((req,res) => {
@@ -8,6 +9,17 @@ router.route("/add").post((req,res) => {
 
     newMaster.save().then(() => {
         res.json("Event Created")
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
+router.route("/addCloseEvent").post((req,res) => {
+    //console.log(req.body);
+    const newMaster = new CloseEventModal(req.body);
+
+    newMaster.save().then(() => {
+        res.json("Event Closed")
     }).catch((err) => {
         console.log(err);
     })
