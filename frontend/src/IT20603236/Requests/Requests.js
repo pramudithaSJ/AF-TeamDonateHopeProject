@@ -152,7 +152,7 @@ export default function AllRequests() {
                       {" "}
                       <Field
                         className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                        type="text"
+                        type="number"
                         name="age"
                         required={true}
                       />
@@ -191,8 +191,9 @@ export default function AllRequests() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="text"
+                      type="number"
                       name="contactno"
+                     
                     />
                   </div>
 
@@ -260,13 +261,13 @@ export default function AllRequests() {
                 <div className="flex-col">
                   <div className="ll">
                     {" "}
-                    <p className="font-semibold">Blood Pint</p>
+                    <p className="font-semibold" placeholder="Enter a number">Blood Pint</p>
                   </div>
                   <div className="ll">
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
-                      type="text"
+                      type="number"
                       name="bloodpint"
                     />
                   </div>

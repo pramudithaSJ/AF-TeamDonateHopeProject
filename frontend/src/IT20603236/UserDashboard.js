@@ -12,7 +12,7 @@ export default function Sidebar() {
   return (
     <div className="flex">
       <div
-        className={` ${
+        className={` ${     
 
           open ? "w-56" : "w-80 "
         } flex flex-col h-screen p-3 bg-red-950 shadow duration-300`}
