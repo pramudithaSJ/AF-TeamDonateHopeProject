@@ -9,6 +9,8 @@ router.route("/add").post((req,res) => {
     const email = req.body.email;
     const address = req.body.address;
     const contact = req.body.contact;
+    const password = req.body.password;
+
 
     const newMaster = new Master({
         id,
@@ -16,7 +18,8 @@ router.route("/add").post((req,res) => {
         age,
         email,
         address,
-        contact
+        contact,
+        password
     })
 
     newMaster.save().then(() => {
@@ -51,7 +54,7 @@ router.route("/delete/:id").delete((req,res) => {
 //http://localhost:8020/master/update/:id
 router.route("/update/:id").put(async (req,res)=>{
     let masterId = req.params.id;
-    const {id,name,email,age,address,contact} = req.body;
+    const {id,name,email,age,address,contact,password} = req.body;
 
     const updateMaster = {
         id,
@@ -59,7 +62,8 @@ router.route("/update/:id").put(async (req,res)=>{
         email,
         age,
         address,
-        contact
+        contact,
+        password
 
     }
 
@@ -81,7 +85,7 @@ router.route("/updateOne/:id").put(async (req, res) => {
         email: req.body.email || Master.email,
         address: req.body.address || Master.address,
         contact: req.body.contact || Master.contact,
-        
+        password: req.body.password || Master.password
 
     };
     master = await Master.findByIdAndUpdate(req.params.id, data, { new: true });

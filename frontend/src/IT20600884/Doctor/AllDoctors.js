@@ -28,6 +28,7 @@ export default function AllDoctors() {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
+  const [password, setPassword] = useState("");
   const [UpdateModal, setUpdateModal] = useState(false);
   const [UpdateItem, setUpdateItem] = useState("");
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -88,6 +89,7 @@ export default function AllDoctors() {
         email: values.email,
         address: values.address,
         contact: values.contact,
+        password: values.password
       })
       .then(() => {
         toast.success("Added Successfully!!");
@@ -109,6 +111,7 @@ export default function AllDoctors() {
         setEmail(response?.data?.email);
         setContact(response?.data?.contact);
         setAddress(response?.data?.address);
+        setPassword(response?.data?.password);
         setUpdateItem(response?.data?._id);
         console.log(response?.data?._id);
       });
@@ -120,8 +123,9 @@ export default function AllDoctors() {
         name: values.name,
         age: values.age,
         email: values.email,
-        contact: values.address,
+        address: values.address,
         contact: values.contact,
+        password: values.password,
       })
       .then((response) => {
         toast.success("update Successful");
@@ -170,6 +174,9 @@ export default function AllDoctors() {
                 <th scope="col" class="px-6 py-3">
                   Contact
                 </th>
+                <th scope="col" class="px-6 py-3">
+                  Password
+                </th>
                 <th scope="col" class="px-6 py-3 text-center">
                   Action
                 </th>
@@ -189,6 +196,7 @@ export default function AllDoctors() {
                   <td class="px-6 py-4 dark:text-black">{item.email}</td>
                   <td class="px-6 py-4 dark:text-black">{item.address}</td>
                   <td class="px-6 py-4 dark:text-black">{item.contact}</td>
+                  <td class="px-6 py-4 dark:text-black">{item.password}</td>
                   <td class="px-1 py-4 dark:text-black w-full justify-center flex gap-4">
                     <button
                       className="font-medium text-yellow-500 hover:text-yellow-300"
@@ -378,6 +386,27 @@ export default function AllDoctors() {
                     name="contact"
                   />
                 </div>
+
+                <div className="flex-col">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Password</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
+                      type="password"
+                      name="password"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs italic"
+                    name="password"
+                  />
+                </div>
                 
 
                 <div className="w-full flex gap-2">
@@ -415,7 +444,8 @@ export default function AllDoctors() {
               age: age,
               email: email,
               address: address,
-              contact: contact
+              contact: contact,
+              password: password
               
             }}
             // validationSchema={validationSchema}
@@ -539,6 +569,27 @@ export default function AllDoctors() {
                     component="div"
                     className="text-red-500 text-xs italic"
                     name="contact"
+                  />
+                </div>
+
+                <div className="flex-col">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Password</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
+                      type="password"
+                      name="password"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs italic"
+                    name="password"
                   />
                 </div>
                 

@@ -28,6 +28,7 @@ export default function AllMasters() {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
+  const [password, setPassword] = useState("");
   const [UpdateModal, setUpdateModal] = useState(false);
   const [UpdateItem, setUpdateItem] = useState("");
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -77,7 +78,7 @@ export default function AllMasters() {
       });
   };
 
-  function AddDoctor(values) {
+  function AddMaster(values) {
     console.log(values);
 
     const response = axios
@@ -88,6 +89,7 @@ export default function AllMasters() {
         email: values.email,
         address: values.address,
         contact: values.contact,
+        password: values.password,
       })
       .then(() => {
         toast.success("Added Successfully!!");
@@ -108,6 +110,7 @@ export default function AllMasters() {
         setAge(response?.data?.age);
         setEmail(response?.data?.email);
         setContact(response?.data?.contact);
+        setPassword(response?.data?.password);
         setAddress(response?.data?.address);
         setUpdateItem(response?.data?._id);
         console.log(response?.data?._id);
@@ -120,8 +123,9 @@ export default function AllMasters() {
         name: values.name,
         age: values.age,
         email: values.email,
-        contact: values.address,
+        address: values.address,
         contact: values.contact,
+        password: values.password,
       })
       .then((response) => {
         toast.success("update Successful");
@@ -170,6 +174,9 @@ export default function AllMasters() {
                 <th scope="col" class="px-6 py-3">
                   Contact
                 </th>
+                <th scope="col" class="px-6 py-3">
+                  Password
+                </th>
                 <th scope="col" class="px-6 py-3 text-center">
                   Action
                 </th>
@@ -189,6 +196,7 @@ export default function AllMasters() {
                   <td class="px-6 py-4 dark:text-black">{item.email}</td>
                   <td class="px-6 py-4 dark:text-black">{item.address}</td>
                   <td class="px-6 py-4 dark:text-black">{item.contact}</td>
+                  <td class="px-6 py-4 dark:text-black">{item.password}</td>
                   <td class="px-1 py-4 dark:text-black w-full justify-center flex gap-4">
                     <button
                       className="font-medium text-yellow-500 hover:text-yellow-300"
@@ -257,7 +265,7 @@ export default function AllMasters() {
           <Formik
             initialValues={initialValues}
             // validationSchema={validationSchema}
-            onSubmit={AddDoctor}
+            onSubmit={AddMaster}
           >
             {({ errors, touched }) => (
               <Form>
@@ -346,7 +354,7 @@ export default function AllMasters() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="address"
+                      type="text"
                       name="address"
                     />
                   </div>
@@ -367,7 +375,7 @@ export default function AllMasters() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
-                      type="contact"
+                      type="text"
                       name="contact"
                     />
                   </div>
@@ -376,6 +384,27 @@ export default function AllMasters() {
                     component="div"
                     className="text-red-500 text-xs italic"
                     name="contact"
+                  />
+                </div>
+
+                <div className="flex-col">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Password</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
+                      type="password"
+                      name="password"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs italic"
+                    name="password"
                   />
                 </div>
                 
@@ -415,7 +444,8 @@ export default function AllMasters() {
               age: age,
               email: email,
               address: address,
-              contact: contact
+              contact: contact,
+              password: password
               
             }}
             // validationSchema={validationSchema}
@@ -509,7 +539,7 @@ export default function AllMasters() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="address"
+                      type="text"
                       name="address"
                     />
                   </div>
@@ -530,7 +560,7 @@ export default function AllMasters() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
-                      type="contact"
+                      type="text"
                       name="contact"
                     />
                   </div>
@@ -539,6 +569,27 @@ export default function AllMasters() {
                     component="div"
                     className="text-red-500 text-xs italic"
                     name="contact"
+                  />
+                </div>
+
+                <div className="flex-col">
+                  <div className="ll">
+                    {" "}
+                    <p className="font-semibold">Password</p>
+                  </div>
+                  <div className="ll">
+                    {" "}
+                    <Field
+                      className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
+                      type="password"
+                      name="password"
+                    />
+                  </div>
+
+                  <ErrorMessage
+                    component="div"
+                    className="text-red-500 text-xs italic"
+                    name="password"
                   />
                 </div>
                 

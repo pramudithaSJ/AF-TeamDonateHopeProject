@@ -117,16 +117,5 @@ router.route("/get/:eid").get((req,res)=>{
     })
 })
 
-//get one of the emergency request
-//http://localhost:8020/emergency/get/:eid
-router.route("/get/:eid").get((req,res)=>{
-    let emergencyId = req.params.eid;
-    MealPlan.findById(emergencyId).then((item)=>{
-        res.json(item)
-    }).catch((err)=>{
-        console.log(err);
-    })
-})
-
 
 module.exports = router;

@@ -11,6 +11,7 @@ import Sidebar from "./IT20603236/UserDashboard";
 import AllRequests from "./IT20603236/Requests/Requests";
 import BloodCount from "./IT20600884/BloodCount/BloodCount";
 import MyRequests from "./IT20603236/MyRequests/MyRequests";
+import DoctorLogin from "./IT20600884/Doctor/login";
 
 
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/doctors" exact element={<AllDoctors />} />
           <Route path="/blood-count" exact element={<BloodCount/>} />
           <Route path="/my-requests" exact element={<MyRequests/>} /> 
+          <Route path="/doctor-login" exact element={<DoctorLogin/>} /> 
         </Routes>
       </BrowserRouter>
     </div>

@@ -9,6 +9,7 @@ router.route("/add").post((req,res) => {
     const email = req.body.email;
     const address = req.body.address;
     const contact = req.body.contact;
+    const password = req.body.password;
 
     const newDoctor = new Doctor({
         id,
@@ -16,7 +17,8 @@ router.route("/add").post((req,res) => {
         age,
         email,
         address,
-        contact
+        contact,
+        password
     })
 
     newDoctor.save().then(() => {
@@ -51,7 +53,7 @@ router.route("/delete/:id").delete((req,res) => {
 //http://localhost:8020/doctor/update/:id
 router.route("/update/:id").put(async (req,res)=>{
     let doctorId = req.params.id;
-    const {id,name,email,age,address,contact} = req.body;
+    const {id,name,email,age,address,contact,password} = req.body;
 
     const updateDoctor = {
         id,
@@ -59,7 +61,8 @@ router.route("/update/:id").put(async (req,res)=>{
         email,
         age,
         address,
-        contact
+        contact,
+        password
 
     }
 
@@ -81,7 +84,7 @@ router.route("/updateOne/:id").put(async (req, res) => {
         email: req.body.email || Doctor.email,
         address: req.body.address || Doctor.address,
         contact: req.body.contact || Doctor.contact,
-        
+        password: req.body.password || Doctor.password
 
     };
     doctor = await Doctor.findByIdAndUpdate(req.params.id, data, { new: true });
@@ -109,5 +112,25 @@ router.route("/get/:id").get((req,res)=>{
     })
 })
 
+
+//Doctor login
+//http://localhost:8020/doctor/login
+router.route("/login").post((req, res) => {
+    const password = req.body.password;
+    Doctor.findOne({ email: req.body.email }).then(user => {
+        // Check if Attendee exists
+        if (!user) {
+            return res.status(404).json({email: "Email not found"});
+        } else {
+            // Check password
+            if (password === user.password) {
+                res.send(user);
+                
+            } else {
+                return res.status(400).json({password: "Password incorrect"});
+            }
+        }
+    });
+});
 
 module.exports = router;

@@ -26,6 +26,10 @@ const MasterSchema = new Schema({
     contact : {
         type : String,
         required : true
+    },
+    password : {
+        type : String,
+        required : true
     }
 })
 

@@ -3,11 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Header } from "./componenent/header";
+import { Header } from "../../IT20620202/UserView/componenent/header";
 import { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const LoginUser = () => {
+const DoctorLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   let navigate = useNavigate();
@@ -27,14 +27,19 @@ const LoginUser = () => {
       
       const responses = axios
 
-        .post(`http://localhost:8020/user/login`, {
+        .post(`http://localhost:8020/doctor/login`, {
           email: values.email,
           password: values.password,
         })
         .then((response) => {
           setIsLoading(false);
+          alert("Login Successfully")
+          navigate("/doctors")
         })
-        .catch(setIsLoading(false));
+        .catch((err) => {
+          setIsLoading(false);
+          alert("Invalid Credentials")
+        })
     }
   };
   return (
@@ -50,6 +55,7 @@ const LoginUser = () => {
             >
               {({ errors, touched }) => (
                 <Form>
+                  <h2 className="text-red-800 font-bold text-3xl mb-10 text-center">Doctor Login</h2>
                   <div className="flex-col w-full">
                     <div className="ll">
                       {" "}
@@ -103,24 +109,7 @@ const LoginUser = () => {
                       "Logins"
                     )}
                   </button>
-                  <div className="text-center mt-3">
-                    <a
-                      href="/register"
-                      variant="body2"
-                      className="text-yellow-900 hover:text-yellow-700 underline"
-                    >
-                      {"Don't have an account? Sign Up"}
-                    </a>
-                  </div>
-                  <div className="text-center mt-3">
-                    <a
-                      href="/doctor-login"
-                      variant="body2"
-                      className="text-yellow-900 hover:text-yellow-700 underline"
-                    >
-                      {"Login as a Doctor"}
-                    </a>
-                  </div>
+                  
                 </Form>
               )}
             </Formik>
@@ -131,4 +120,4 @@ const LoginUser = () => {
   );
 };
 
-export default LoginUser;
+export default DoctorLogin;
