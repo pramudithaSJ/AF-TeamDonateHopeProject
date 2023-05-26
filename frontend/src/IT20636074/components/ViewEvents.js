@@ -43,31 +43,9 @@ export default function ViewEvents() {
     quantity: 0,
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const response = axios
-    .post(`http://localhost:8020/nmaster/add`, {
-      eventName: eventName,
-      orgTeam: organizationTeam,
-      location: eventLocation,
-      date: edate,
-      time:etime,
-      contact: contact
-    })
-    .then(() => {
-      alert("Added Successfully!!");
-    })
-    .catch(() => {
-      alert("error!!");
-    });
-  };
-
-  const handleFileUpload = (event) => {
-    setFile(event.target.files[0]);
-  };
-  useEffect(() => {
+  const getEvents = () => {
     axios
-      .get("http://localhost:8020/master/")
+      .get("http://localhost:8020/nmaster/")
       .then((response) => {
         if (response) {
           setItems(response.data);
@@ -76,7 +54,16 @@ export default function ViewEvents() {
         }
       })
       .catch((error) => toast.error(error));
-  }, [items]);
+  };
+
+  const handleFileUpload = (event) => {
+    setFile(event.target.files[0]);
+  };
+  useEffect(() => {
+    getEvents();
+  }, []);
+
+
 
   const deleteItem = (id) => {
     axios
@@ -103,6 +90,20 @@ export default function ViewEvents() {
         setUpdateItem(response?.data?._id);
         console.log(response?.data?._id);
       });
+  }
+
+  const DeleteEvent = (id) => {
+    axios
+      .get("http://localhost:8020/nmaster/delete?id="+id)
+      .then((response) => {
+        if (response) {
+          alert("Event Deleted!");
+          getEvents();
+        } else {
+          toast.error("Error While Fetching Data!!");
+        }
+      })
+      .catch((error) => toast.error(error));
   }
 
   return (
@@ -133,15 +134,29 @@ export default function ViewEvents() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                    <td>Malcolm Lockyer</td>
-                    <td>1961</td>
-                    <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                    <td>Malcolm Lockyer</td>
-                    <td>1961</td>
+              {
+                items.map((row,index) => (
+                    <tr>
+                    <td>{row.eventName}</td>
+                    <td>{row.orgTeam}</td>
+                    <td>{row.location}</td>
+                    <td>{row.date}</td>
+                    <td>{row.time}</td>
+                    <td>{row.contact}</td>
                     <td>
-                    <Link to="/UpdateBloodEvent">
+                    <Link to={`/CloseEvent/${row._id}/${row.eventName}`}>
+
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <div class="flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                            </svg>
+                        </div>
+                    </button>
+                    </Link>
+
+                    <Link to={`/UpdateBloodEvent/${row._id}`}>
+
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         <div class="flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -150,8 +165,8 @@ export default function ViewEvents() {
                         </div>
                     </button>
                     </Link>
-                    <Link to="/UpdateBloodEvent">
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => DeleteEvent(row._id)}>
                         <div class="flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
@@ -159,33 +174,13 @@ export default function ViewEvents() {
 
                         </div>
                     </button>
-                    </Link>
+                    
                     </td>
                 </tr>
-                <tr>
-                    <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                    <td>Malcolm Lockyer</td>
-                    <td>1961</td>
-                    <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                    <td>Malcolm Lockyer</td>
-                    <td>1961</td>
-                    <td>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        <div class="flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                            </svg>
-                        </div>
-                    </button><button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        <div class="flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                            </svg>
-
-                        </div>
-                    </button>
-                    </td>
-                </tr>
+                ))
+              }
+                
+              
             </tbody>
         </table>
       </div>

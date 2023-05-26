@@ -27,6 +27,10 @@ const MasterSchema = new Schema({
     contact : {
         type : String,
         required : true
+    },
+    filePath : {
+        type : String,
+        required : true
     }
 })
 

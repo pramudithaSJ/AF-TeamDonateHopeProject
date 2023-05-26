@@ -15,6 +15,7 @@ import CreateBloodDonation from "./IT20636074/components/CreateBloodDonation";
 import ViewEvents from "./IT20636074/components/ViewEvents";
 import UpdateBloodDonation from "./IT20636074/components/UpdateEvent";
 import CloseEvent from "./IT20636074/components/CloseEvent";
+import CloseEventList from "./IT20636074/components/CloseEventList";
 
 function App() {
   return (
@@ -46,8 +47,9 @@ function App() {
           <Route path="/" exact element={<MasterSidebar/>} />
           <Route path="/CreateBloodEvent" exact element={<CreateBloodDonation/>} />
           <Route path="/ViewEvents" exact element={<ViewEvents/>} />
-          <Route path="/UpdateBloodEvent" exact element={<UpdateBloodDonation/>} />
-          <Route path="/CloseEvent" exact element={<CloseEvent/>} />
+          <Route path="/UpdateBloodEvent/:eid" exact element={<UpdateBloodDonation/>} />
+          <Route path="/CloseEvent/:id/:ename" exact element={<CloseEvent/>} />
+          <Route path="/CloseEventList" exact element={<CloseEventList/>} />
 
         </Routes>
       </BrowserRouter>

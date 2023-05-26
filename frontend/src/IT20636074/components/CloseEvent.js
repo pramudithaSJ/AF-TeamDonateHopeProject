@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 
 const customStyles = {
@@ -39,7 +40,7 @@ export default function CloseEvent() {
   const [OMynus, setOMynus] = useState();
   const [ABMynus, setABMynus] = useState();
   const [doctorIncharge, setdoctorIncharge] = useState([]);
-
+  const { id,ename } = useParams();
   const initialValues = {
     code: "",
     name: "",
@@ -50,8 +51,8 @@ export default function CloseEvent() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const response = axios
-    .post(`http://localhost:8020/nmaster/addCloseEvent`, {
-      eventName: eventName,
+    .post(`http://localhost:8020/nmaster/addCloseEvent?id=`+id, {
+      eventName: ename,
       participants: participants,
       closingDate: closingDate,
       closingTime: closingTime,
@@ -108,7 +109,8 @@ export default function CloseEvent() {
             <input
                 type="text"
                 id="event-name"
-                value={eventName}
+                disabled
+                defaultValue={ename}
                 onChange={(event) => seteventName(event.target.value)}
                 placeholder="Enter event name"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

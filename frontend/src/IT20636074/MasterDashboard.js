@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ViewEvents from "./components/ViewEvents";
-import CloseEvent from "./components/CloseEvent";
 import logo from "./components/img/Hope.png";
+import CloseEventList from "./components/CloseEventList";
 
 export default function MasterSidebar() {
   const [open, setOpen] = useState(false);
@@ -111,7 +111,7 @@ export default function MasterSidebar() {
       <div className="container mx-auto">
 
         {selectedField === "ViewEvents" ? <ViewEvents/> : null}
-        {selectedField === "CloseEvent" ? <CloseEvent/> : null}
+        {selectedField === "CloseEvent" ? <CloseEventList/> : null}
         
       </div>
     </div>

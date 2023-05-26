@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "./img/Hope.png";
-
+import { useParams } from 'react-router-dom';
 
 
 const customStyles = {
@@ -19,6 +19,7 @@ const customStyles = {
 };
 
 export default function UpdateBloodDonation() {
+  const { eid } = useParams();
   const navigate = useNavigate();
   const [eventName, setEventName] = useState("");
   const [organizationTeam, setorganizationTeam] = useState("");
@@ -47,7 +48,7 @@ export default function UpdateBloodDonation() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const response = axios
-    .post(`http://localhost:8020/nmaster/add`, {
+    .post(`http://localhost:8020/nmaster/update?id=`+eid, {
       eventName: eventName,
       orgTeam: organizationTeam,
       location: eventLocation,
@@ -66,18 +67,28 @@ export default function UpdateBloodDonation() {
   const handleFileUpload = (event) => {
     setFile(event.target.files[0]);
   };
-  useEffect(() => {
+  const getEvents = () => {
     axios
-      .get("http://localhost:8020/master/")
+      .get("http://localhost:8020/nmaster/getEventOne?id="+eid)
       .then((response) => {
         if (response) {
           setItems(response.data);
+          setEventName(response.data.eventName);
+          setorganizationTeam(response.data.orgTeam);
+          setEventLocation(response.data.location);
+          setedate(response.data.date);
+          setetime(response.data.time);
+          setContact(response.data.contact);
         } else {
           toast.error("Error While Fetching Data!!");
         }
       })
       .catch((error) => toast.error(error));
-  }, [items]);
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
 
   const deleteItem = (id) => {
     axios
@@ -249,7 +260,7 @@ export default function UpdateBloodDonation() {
                 type="text"
                 id="event-name"
                 placeholder="Enter event name"
-                value={eventName}
+                defaultValue={items.eventName}
                 onChange={(event) => setEventName(event.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
@@ -262,7 +273,7 @@ export default function UpdateBloodDonation() {
                     type="text"
                     id="event-location"
                     placeholder="Enter event location"
-                    value={organizationTeam}
+                    defaultValue={items.orgTeam}
                     onChange={(event) => setorganizationTeam(event.target.value)}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -275,7 +286,7 @@ export default function UpdateBloodDonation() {
                 type="text"
                 id="event-location"
                 placeholder="Enter event location"
-                value={eventLocation}
+                defaultValue={items.location}
                 onChange={(event) => setEventLocation(event.target.value)}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
@@ -288,7 +299,7 @@ export default function UpdateBloodDonation() {
                     type="date"
                     id="event-location"
                     placeholder="Enter event Date"
-                    value={edate}
+                    defaultValue={items.date}
                     onChange={(event) => setedate(event.target.value)}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -301,7 +312,7 @@ export default function UpdateBloodDonation() {
                     type="time"
                     id="event-location"
                     placeholder="Enter event Time"
-                    value={etime}
+                    defaultValue={items.time}
                     onChange={(event) => setetime(event.target.value)}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -314,7 +325,7 @@ export default function UpdateBloodDonation() {
                     type="tel"
                     id="event-location"
                     placeholder="Enter contact number"
-                    value={contact}
+                    defaultValue={items.contact}
                     onChange={(event) => setContact(event.target.value)}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -324,7 +335,7 @@ export default function UpdateBloodDonation() {
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-                Submit
+                Update
             </button>
             </div>
         </div>

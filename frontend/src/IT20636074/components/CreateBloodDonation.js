@@ -41,40 +41,54 @@ export default function CreateBloodDonation() {
     description: "",
     quantity: 0,
   };
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const response = axios
-    .post(`http://localhost:8020/nmaster/add`, {
-      eventName: eventName,
+    const formData = new FormData();
+    formData.append('filePath', selectedFile);
+    formData.append('orgTeam', organizationTeam);
+    formData.append('location', eventLocation);
+    formData.append('date', edate);
+    formData.append('time', etime);
+    formData.append('contact', contact);
+    formData.append('eventName', eventName);
+
+    console.log(selectedFile);
+    /*
+    eventName: eventName,
       orgTeam: organizationTeam,
       location: eventLocation,
       date: edate,
       time:etime,
-      contact: contact
-    })
-    .then(() => {
-      alert("Added Successfully!!");
-    })
-    .catch(() => {
-      alert("error!!");
-    });
+      contact: contact,
+      filePath:selectedFile
+    */
+      fetch('http://localhost:8020/nmaster/add', {
+        method: 'POST',
+        body: formData,
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response data
+          alert("Event Added Successfully!");
+        })
+        .catch(error => {
+          // Handle any errors
+          console.error(error);
+        });
+        
   };
 
   const handleFileUpload = (event) => {
     setFile(event.target.files[0]);
   };
   useEffect(() => {
-    axios
-      .get("http://localhost:8020/master/")
-      .then((response) => {
-        if (response) {
-          setItems(response.data);
-        } else {
-          toast.error("Error While Fetching Data!!");
-        }
-      })
-      .catch((error) => toast.error(error));
+    
   }, [items]);
 
   const deleteItem = (id) => {
@@ -217,11 +231,11 @@ export default function CreateBloodDonation() {
       </div>
       <div className="w-full flex px-10 mt-10" style={{'border-top': '1px solid #000','padding-top':'10px','margin-top':'0px'}}>
         
-            <form onSubmit={(e) => handleSubmit(e)} className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-wrap">
+            <form onSubmit={(e) => handleSubmit(e)} enctype="multipart/form-data" className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-wrap">
         <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
             <h2 className="text-2xl font-bold mb-2">Upload a File</h2>
 
-                <input type="file"  className="mb-4" id="imgUp" hidden />
+                <input type="file" onClick={handleFileChange}  className="mb-4" id="imgUp" hidden />
                 {file && (
                 <p className="text-sm">
                     Selected File: <span className="font-medium">{file.name}</span>
