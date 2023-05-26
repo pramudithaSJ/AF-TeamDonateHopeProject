@@ -152,7 +152,7 @@ export default function AllRequests() {
                       {" "}
                       <Field
                         className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                        type="number"
+                        type="text"
                         name="age"
                         required={true}
                       />
@@ -191,7 +191,7 @@ export default function AllRequests() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1  rounded-md w-full"
-                      type="number"
+                      type="text"
                       name="contactno"
                      
                     />
@@ -267,7 +267,7 @@ export default function AllRequests() {
                     {" "}
                     <Field
                       className="border border-grey-dark text-sm p-3 my-1 rounded-md w-full"
-                      type="number"
+                      type="text"
                       name="bloodpint"
                     />
                   </div>
