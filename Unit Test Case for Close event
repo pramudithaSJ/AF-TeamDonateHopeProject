@@ -1,0 +1,56 @@
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../your-express-app'); // Replace with the path to your Express app file
+
+const expect = chai.expect;
+chai.use(chaiHttp);
+
+describe('Master Routes', () => {
+  describe('POST /master/add', () => {
+    it('should create a new event and return "Event Created"', (done) => {
+      chai
+        .request(app)
+        .post('/master/add')
+        .field('name', 'Event Name')
+        .field('description', 'Event Description')
+        .attach('filePath', '/path/to/test/file.png') // Replace with the path to your test file
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.equal('Event Created');
+          // Additional assertions or checks related to database records can be added here
+          done();
+        });
+    });
+  });
+
+  describe('POST /master/addCloseEvent', () => {
+    it('should create a new close event, delete the corresponding master event, and return "Event Closed"', (done) => {
+      chai
+        .request(app)
+        .post('/master/addCloseEvent')
+        .send({ name: 'Close Event' })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.equal('Event Closed');
+          // Additional assertions or checks related to database records can be added here
+          done();
+        });
+    });
+  });
+
+  describe('GET /master', () => {
+    it('should return an array of master events', (done) => {
+      chai
+        .request(app)
+        .get('/master')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('array');
+          // Additional assertions or checks related to the response body can be added here
+          done();
+        });
+    });
+  });
+
+  // Add more test cases for other routes in a similar manner
+});
