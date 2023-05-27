@@ -78,6 +78,17 @@ router.route("/delete").get((req,res) => {
 
 })
 
+router.route("/deleteCE").get((req,res) => {
+    const masterId = req.query.id;
+
+    CloseEventModal.findByIdAndDelete(masterId).then(() => {
+        res.status(200).send({status:"Master Deleted"})
+    }).catch((err)=>{
+        console.log(err);
+    })
+
+})
+
 //update master
 //http://localhost:8020/master/update/:id
 router.route("/update/:id").put(async (req,res)=>{

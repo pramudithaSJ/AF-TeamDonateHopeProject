@@ -121,7 +121,7 @@ export default function ViewEvents() {
       <div className="w-full bg-gray-100 p-5 mb-5">
         <h1 className="text-2xl">Blood Donation Event List</h1>
       </div>
-        <table class="table-auto">
+        <table class="table-auto w-100" style={{width:'100%'}}>
             <thead>
                 <tr>
                 <th>Event Name</th>
@@ -143,12 +143,12 @@ export default function ViewEvents() {
                     <td>{row.date}</td>
                     <td>{row.time}</td>
                     <td>{row.contact}</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>
                     <Link to={`/CloseEvent/${row._id}/${row.eventName}`}>
 
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         <div class="flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
                             </svg>
                         </div>
