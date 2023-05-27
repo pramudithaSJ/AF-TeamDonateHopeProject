@@ -1,0 +1,87 @@
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const expect = chai.expect;
+const app = require('../app'); // assuming the Express app is exported from app.js
+const Blood = require('../models/BloodModel');
+
+chai.use(chaiHttp);
+
+describe('Blood API', () => {
+  beforeEach((done) => {
+    // Clear the Blood collection before each test
+    Blood.deleteMany({}, (err) => {
+      if (err) done(err);
+      done();
+    });
+  });
+
+  describe('POST /blood/add', () => {
+    it('should add a new blood record', (done) => {
+      chai.request(app)
+        .post('/blood/add')
+        .send({
+          event_name: 'Blood Donation Event',
+          closing_date: '2023-05-28',
+          closing_time: '10:00 AM',
+          blood_type: 'O+',
+          blood_count: 10,
+          doctor_incharge: 'Dr. Smith',
+        })
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.equal('Blood Added');
+          done();
+        });
+    });
+  });
+
+  describe('GET /blood/:blood_type', () => {
+    it('should get blood records by blood type', (done) => {
+      // Insert some test data
+      const bloodData = [
+        { event_name: 'Event 1', closing_date: '2023-05-29', closing_time: '11:00 AM', blood_type: 'A+', blood_count: 5, doctor_incharge: 'Dr. Johnson' },
+        { event_name: 'Event 2', closing_date: '2023-05-30', closing_time: '12:00 PM', blood_type: 'B+', blood_count: 8, doctor_incharge: 'Dr. Brown' },
+        { event_name: 'Event 3', closing_date: '2023-05-31', closing_time: '1:00 PM', blood_type: 'A+', blood_count: 3, doctor_incharge: 'Dr. Davis' }
+      ];
+      Blood.insertMany(bloodData, (err, docs) => {
+        if (err) done(err);
+
+        chai.request(app)
+          .get('/blood/A+')
+          .end((err, res) => {
+            expect(res).to.have.status(200);
+            expect(res.body).to.be.an('array');
+            expect(res.body).to.have.lengthOf(2);
+            done();
+          });
+      });
+    });
+  });
+
+  describe('GET /blood', () => {
+    it('should get the total blood count by blood type', (done) => {
+      // Insert some test data
+      const bloodData = [
+        { event_name: 'Event 1', closing_date: '2023-05-29', closing_time: '11:00 AM', blood_type: 'A+', blood_count: 5, doctor_incharge: 'Dr. Johnson' },
+        { event_name: 'Event 2', closing_date: '2023-05-30', closing_time: '12:00 PM', blood_type: 'B+', blood_count: 8, doctor_incharge: 'Dr. Brown' },
+        { event_name: 'Event 3', closing_date: '2023-05-31', closing_time: '1:00 PM', blood_type: 'A+', blood_count: 3, doctor_incharge: 'Dr. Davis' }
+      ];
+      Blood.insertMany(bloodData, (err, docs) => {
+        if (err) done(err);
+
+        chai.request(app)
+          .get('/blood')
+          .end((err, res) => {
+            expect(res).to.have.status(200);
+            expect(res.body).to.be.an('array');
+            expect(res.body).to.have.lengthOf(2);
+            expect(res.body[0]).to.have.property('blood_type', 'A+');
+            expect(res.body[0]).to.have.property('total_count', 8);
+            expect(res.body[1]).to.have.property('blood_type', 'B+');
+            expect(res.body[1]).to.have.property('total_count', 8);
+            done();
+          });
+      });
+    });
+  });
+});
